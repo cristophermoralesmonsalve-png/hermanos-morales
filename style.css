@@ -162,7 +162,7 @@ body{
 }
 
 .card:hover{
-    transform:translateY(-10px);
+    transform:translateY(-6px);
 }
 
 .card img{
@@ -197,4 +197,30 @@ body{
     padding: 12px 8%;
     box-shadow: 0 8px 25px rgba(0,0,0,.30);
     transition: .3s;
+}
+/*====================================
+IMAGEN PRODUCTO
+====================================*/
+
+.card-img{
+    position:relative;
+    overflow:hidden;
+    height:260px;
+}
+
+.card-img img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.producto-img{
+    transition:
+        transform .45s ease,
+        opacity .35s ease;
+}
+
+.card:hover .producto-img{
+    transform:scale(1.03);
 }

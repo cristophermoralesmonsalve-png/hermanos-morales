@@ -1,69 +1,132 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hermanos Morales</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    
-    <nav class="navbar">
-    <div class="logo">Hermanos Morales</div>
 
-    <ul class="menu">
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#productos">Productos</a></li>
-        <li><a href="#">Galería</a></li>
-        <li><a href="#">Contacto</a></li>
-    </ul>
-</nav>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">Hermanos Morales</div>
+
+        <ul class="menu">
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#productos">Productos</a></li>
+            <li><a href="#">Galería</a></li>
+            <li><a href="#">Contacto</a></li>
+        </ul>
+    </nav>
 
     <!-- HERO -->
     <header class="hero">
         <div class="hero-texto">
             <h1>Hermanos Morales</h1>
-            <p>Fabricación de muebles de madera a medida.</p>
+
+            <p>
+                Fabricación de muebles de madera a medida.
+            </p>
+
             <a href="https://wa.me/56966060170" class="btn" target="_blank">
-    Cotizar Ahora
-</a>
+                Cotizar Ahora
+            </a>
         </div>
     </header>
 
     <!-- PRODUCTOS -->
-   <section class="productos" id="productos">
+    <section class="productos" id="productos">
+
         <div class="contenedor">
+
             <h2>Nuestros Productos</h2>
+
             <p class="subtitulo">
                 Fabricamos muebles de madera con diseños modernos, resistentes y personalizados.
             </p>
 
             <div class="productos-grid">
 
+                <!-- SOFÁS -->
                 <div class="card">
-                    <img src="img/portada.png" alt="Muebles de madera">
-                    <h3>Sofás individuales </h3>
-                    <p>Fabricación a medida con distintos colores y terminaciones.</p>
-                    <a href="#" class="btn">Cotizar</a>
+
+                    <div class="card-img">
+                        <img
+                            class="producto-img"
+                            src="img/sofas/sofa1-1.jpg"
+                            alt="Sofá Individual"
+                            data-imagenes="
+                            img/sofas/sofa1-1.jpg,
+                            img/sofas/sofa1-2.jpg,
+                            img/sofas/sofa1-3.jpg,
+                            img/sofas/sofa1-4.jpg,
+                            img/sofas/sofa1-5.jpg,
+                            img/sofas/sofa1-6.jpg,
+                            img/sofas/sofa1-7.jpg,
+                            img/sofas/sofa1-8.jpg">
+                    </div>
+
+                    <h3>Sofás individuales</h3>
+
+                    <p>
+                        Fabricación a medida con distintos colores y terminaciones.
+                    </p>
+
+                    <a href="#" class="btn">
+                        Cotizar
+                    </a>
+
                 </div>
 
+                <!-- BANCAS -->
                 <div class="card">
-                    <img src="img/portada.png" alt="Muebles de madera">
-                    <h3>Bancas          </h3>
-                    <p>Ideales para terrazas, jardines y espacios interiores.</p>
-                    <a href="#" class="btn">Cotizar</a>
+
+                    <div class="card-img">
+                        <img src="img/portada.png" alt="Bancas de madera">
+                    </div>
+
+                    <h3>Bancas</h3>
+
+                    <p>
+                        Ideales para terrazas, jardines y espacios interiores.
+                    </p>
+
+                    <a href="#" class="btn">
+                        Cotizar
+                    </a>
+
                 </div>
 
+                <!-- JARDÍN -->
                 <div class="card">
-                    <img src="img/portada.png" alt="Muebles de madera">
-                    <h3> Jardín e interior</h3>
-                    <p>Diseños modernos para decorar cualquier ambiente.</p>
-                    <a href="#" class="btn">Cotizar</a>
+
+                    <div class="card-img">
+                        <img src="img/portada.png" alt="Muebles de jardín">
+                    </div>
+
+                    <h3>Jardín e interior</h3>
+
+                    <p>
+                        Diseños modernos para decorar cualquier ambiente.
+                    </p>
+
+                    <a href="#" class="btn">
+                        Cotizar
+                    </a>
+
                 </div>
 
             </div>
+
         </div>
+
     </section>
+
     <script src="script.js"></script>
+
 </body>
+
 </html>
