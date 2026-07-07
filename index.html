@@ -2,145 +2,390 @@
 <html lang="es">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hermanos Morales</title>
+
+    <title>Hermanos Morales | Muebles a Medida</title>
+
     <link rel="stylesheet" href="style.css">
+
+    <!-- ICONOS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
 </head>
 
 <body>
 
+    <!-- ===================================== -->
     <!-- NAVBAR -->
+    <!-- ===================================== -->
+
     <nav class="navbar">
-        
-        <div class="logo">Hermanos Morales</div>
+
+        <div class="logo">
+            Hermanos Morales
+        </div>
 
         <ul class="menu">
+
             <li><a href="#">Inicio</a></li>
-            <li><a href="#productos">Productos</a></li>
-            <li><a href="#">Galería</a></li>
-            <li><a href="#">Contacto</a></li>
-                <a href="https://www.youtube.com/watch?v=xsvZOUnXdWM"
-       target="_blank"
-       class="btn-oferta">
-       🔥 30% OFF
-    </a>
+
+            <li><a href="#catalogo">
+                Catálogo
+            </a></li>
+
+            <li><a href="#">
+                Galería
+            </a></li>
+
+            <li><a href="#">
+                Contacto
+            </a></li>
+
+            <li>
+
+                <a href="https://wa.me/56966060170"
+                    class="btn-oferta"
+                    target="_blank">
+
+                    Cotizar
+
+                </a>
+
+            </li>
+
         </ul>
+
     </nav>
 
+
+    <!-- ===================================== -->
     <!-- HERO -->
+    <!-- ===================================== -->
+
     <header class="hero">
-        
+
         <div class="hero-texto">
-            <h1>Hermanos Morales</h1>
+
+            <h1>
+
+                Muebles de madera
+                <br>
+                hechos a medida
+
+            </h1>
 
             <p>
-                Fabricación de muebles de madera a medida.
+
+                Diseñamos y fabricamos muebles únicos para tu hogar,
+                terraza o jardín.
+
             </p>
 
-            <a href="https://wa.me/56966060170" class="btn" target="_blank">
-                Cotizar Ahora
+            <a href="#catalogo" class="btn">
+
+                Ver Catálogo
+
             </a>
+
         </div>
+
     </header>
 
-    <!-- PRODUCTOS -->
-    <section class="productos" id="productos">
 
-        <div class="contenedor">
+    <!-- ===================================== -->
+    <!-- CATÁLOGO -->
+    <!-- ===================================== -->
 
-            <h2>Nuestros Productos</h2>
+    <section class="catalogo" id="catalogo">
 
-            <p class="subtitulo">
-                Fabricamos muebles de madera con diseños modernos, resistentes y personalizados.
-            </p>
+        <div class="catalogo-contenedor">
 
-            <div class="productos-grid">
+            <!-- ============================= -->
+            <!-- PANEL IZQUIERDO -->
+            <!-- ============================= -->
 
-                <!-- SOFÁS -->
-                <div class="card">
+            <aside class="categorias">
 
-                    <div class="card-img">
-                        <img
-                            class="producto-img"
-                            src="img/sofas/sofa1-1.jpg"
-                            alt="Sofá Individual"
-                            data-imagenes="
-                            img/sofas/sofa1-1.jpg,
-                            img/sofas/sofa1-2.jpg,
-                            img/sofas/sofa1-3.jpg,
-                            img/sofas/sofa1-4.jpg,
-                            img/sofas/sofa1-5.jpg,
-                            img/sofas/sofa1-6.jpg,
-                            img/sofas/sofa1-7.jpg,
-                            img/sofas/sofa1-8.jpg">
+                <h2>
+
+                    Categorías
+
+                </h2>
+                                <!-- BOTÓN 1 -->
+
+                <div class="categoria activa">
+
+                    <div class="categoria-icono">
+
+                        <i class="fa-solid fa-couch"></i>
+
                     </div>
 
-                    <h3>Sofás individuales</h3>
+                    <div class="categoria-info">
+
+                        <h3>Sillones individuales</h3>
+
+                        <span>Modelos personalizados</span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BOTÓN 2 -->
+
+                <div class="categoria">
+
+                    <div class="categoria-icono">
+
+                        <i class="fa-solid fa-chair"></i>
+
+                    </div>
+
+                    <div class="categoria-info">
+
+                        <h3>Bancas y Asientos</h3>
+
+                        <span>Diferentes estilos</span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BOTÓN 3 -->
+
+                <div class="categoria">
+
+                    <div class="categoria-icono">
+
+                        <i class="fa-solid fa-tree"></i>
+
+                    </div>
+
+                    <div class="categoria-info">
+
+                        <h3>Jardín y Exterior</h3>
+
+                        <span>Muebles resistentes</span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BOTÓN 4 -->
+
+                <div class="categoria">
+
+                    <div class="categoria-icono">
+
+                        <i class="fa-solid fa-house"></i>
+
+                    </div>
+
+                    <div class="categoria-info">
+
+                        <h3>Interior</h3>
+
+                        <span>Diseños modernos</span>
+
+                    </div>
+
+                </div>
+
+            </aside>
+
+
+            <!-- ============================= -->
+            <!-- PANEL CENTRAL -->
+            <!-- ============================= -->
+
+            <section class="modelos">
+
+                <h2>
+
+                    Modelos disponibles
+
+                </h2>
+
+                                <!-- MODELO 1 -->
+
+                <div class="modelo activo">
+
+                    <img
+                        src="img/sofas/sofa1-7.jpg"
+                        alt="Sofa Natural">
+
+                    <div class="modelo-info">
+
+                        <h3>Banca Natural</h3>
+
+                        <span>Madera de pino</span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MODELO 2 -->
+
+                <div class="modelo">
+
+                    <img
+                        src="img/bancas/banca2-1.jpg"
+                        alt="Banca Nogal">
+
+                    <div class="modelo-info">
+
+                        <h3>Banca Nogal</h3>
+
+                        <span>Tono nogal</span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MODELO 3 -->
+
+                <div class="modelo">
+
+                    <img
+                        src="img/bancas/banca1-2.jpg"
+                        alt="Banca Alerce">
+
+                    <div class="modelo-info">
+
+                        <h3>Banca Alerce</h3>
+
+                        <span>Acabado natural</span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MODELO 4 -->
+
+                <div class="modelo">
+
+                    <img
+                        src="img/bancas/banca2-2.jpg"
+                        alt="Banca Roble">
+
+                    <div class="modelo-info">
+
+                        <h3>Banca Roble</h3>
+
+                        <span>Diseño moderno</span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ============================= -->
+            <!-- PANEL DERECHO -->
+            <!-- ============================= -->
+
+            <section class="detalle-producto">
+
+                <div class="detalle-imagen">
+
+                    <img
+                        src="img/bancas/banca1-1.jpg"
+                        alt="Banca Natural">
+
+                </div>
+
+                <div class="detalle-info">
+
+                    <h2>
+
+                        Banca Natural
+
+                    </h2>
 
                     <p>
-                        Fabricación a medida con distintos colores y terminaciones.
+
+                        Fabricada en madera de alta calidad.
+                        Ideal para terrazas, jardines,
+                        quinchos y espacios interiores.
+
                     </p>
 
-                    <a href="#" class="btn">
-                        Cotizar
+                    <ul>
+
+                        <li>✔ Fabricación a medida</li>
+
+                        <li>✔ Diferentes colores</li>
+
+                        <li>✔ Terminación premium</li>
+
+                        <li>✔ Uso interior y exterior</li>
+
+                    </ul>
+
+                    <a
+                        href="https://wa.me/56966060170"
+                        class="btn"
+                        target="_blank">
+
+                        Cotizar por WhatsApp
+
                     </a>
 
                 </div>
 
-                <!-- BANCAS -->
-                <div class="card">
+            </section>
 
-                 <div class="card-img">
-                        <img
-                            class="producto-img"
-                            src="img/bancas/banca1-1.jpg"
-                            alt="Bancas & asientos"
-                            data-imagenes="
-                            img/bancas/banca1-1.jpg,
-                            img/bancas/banca1-2.jpg,
-                            img/bancas/banca1-3.jpg,
-                            img/bancas/banca2-1.jpg,
-                            img/bancas/banca2-2.jpg,
-                            img/bancas/banca2-3.jpg">
-                    </div>
+        </div>
 
-                    <h3>Bancas</h3>
+    </section>
+        <!-- ===================================== -->
+    <!-- FOOTER -->
+    <!-- ===================================== -->
 
-                    <p>
-                        Ideales para terrazas, jardines y espacios interiores.
-                    </p>
+    <footer class="footer">
 
-                    <a href="#" class="btn">
-                        Cotizar
-                    </a>
+        <div class="footer-contenedor">
 
-                </div>
+            <div class="footer-logo">
 
-                <!-- JARDÍN -->
-                <div class="card">
+                <h2>Hermanos Morales</h2>
 
-                    <div class="card-img">
-                        <img src="img/portada.png" alt="Muebles de jardín">
-                    </div>
+                <p>
 
-                    <h3>Jardín e interior</h3>
+                    Fabricación de muebles de madera a medida.
+                    Diseños exclusivos para interiores y exteriores.
 
-                    <p>
-                        Diseños modernos para decorar cualquier ambiente.
-                    </p>
+                </p>
 
-                    <a href="#" class="btn">
-                        Cotizar
-                    </a>
+            </div>
 
-                </div>
+            <div class="footer-contacto">
+
+                <h3>Contacto</h3>
+
+                <p>
+
+                    <i class="fa-brands fa-whatsapp"></i>
+
+                    +56 9 6606 0170
+
+                </p>
 
             </div>
 
         </div>
 
-    </section>
+    </footer>
 
     <script src="script.js"></script>
 

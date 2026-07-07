@@ -3,76 +3,79 @@
 // script.js
 // ======================================
 
-// ------------------------------
-// NAVBAR AL HACER SCROLL
-// ------------------------------
+// NAVBAR SCROLL
 
 const navbar = document.querySelector(".navbar");
 
 window.addEventListener("scroll", () => {
 
     if (window.scrollY > 50) {
+
         navbar.classList.add("scrolled");
+
     } else {
+
         navbar.classList.remove("scrolled");
+
     }
 
 });
 
-// ------------------------------
-// CARRUSEL DE PRODUCTOS
-// ------------------------------
 
-const productos = document.querySelectorAll(".producto-img");
+// ======================================
+// CATEGORÍAS
+// ======================================
 
-productos.forEach((img) => {
+const categorias = document.querySelectorAll(".categoria");
 
-    const imagenes = img.dataset.imagenes.split(",");
+categorias.forEach((categoria)=>{
 
-    let indice = 0;
-    let intervalo = null;
+    categoria.addEventListener("click",()=>{
 
-    img.addEventListener("mouseenter", () => {
+        categorias.forEach(c=>c.classList.remove("activa"));
 
-        if (intervalo) return;
-
-        intervalo = setInterval(() => {
-
-            indice++;
-
-            if (indice >= imagenes.length) {
-                indice = 0;
-            }
-
-            img.style.opacity = "0";
-
-            setTimeout(() => {
-
-                img.src = imagenes[indice];
-                img.style.opacity = "1";
-
-            }, 180);
-
-        }, 1400);
+        categoria.classList.add("activa");
 
     });
 
-    img.addEventListener("mouseleave", () => {
+});
 
-        clearInterval(intervalo);
 
-        intervalo = null;
+// ======================================
+// MODELOS
+// ======================================
 
-        indice = 0;
+const modelos = document.querySelectorAll(".modelo");
 
-        img.style.opacity = "0";
+const imagenDetalle = document.querySelector(".detalle-imagen img");
 
-        setTimeout(() => {
+const tituloDetalle = document.querySelector(".detalle-info h2");
 
-            img.src = imagenes[0];
-            img.style.opacity = "1";
+const descripcionDetalle = document.querySelector(".detalle-info p");
 
-        }, 180);
+
+modelos.forEach((modelo)=>{
+
+    modelo.addEventListener("click",()=>{
+
+        modelos.forEach(m=>m.classList.remove("activo"));
+
+        modelo.classList.add("activo");
+
+        const img = modelo.querySelector("img").src;
+
+        const nombre = modelo.querySelector("h3").textContent;
+
+        const subtitulo = modelo.querySelector("span").textContent;
+
+        imagenDetalle.src = img;
+
+        tituloDetalle.textContent = nombre;
+
+        descripcionDetalle.textContent =
+        "Modelo " + nombre +
+        ". " + subtitulo +
+        ". Fabricado completamente a medida con distintas opciones de madera, color y terminaciones.";
 
     });
 
