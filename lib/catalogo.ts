@@ -157,33 +157,6 @@ export const categorias: Categoria[] = [
         ],
         ficha: "/img/exterior/macetero-principal.png",
       },
-      {
-        id: "banca-exterior",
-        nombre: "Banca de Exterior",
-        subtitulo: "Resistente a la intemperie",
-        imagen: "/img/bancas/banca1-4.jpg",
-        descripcion:
-          "Banca tratada especialmente para exteriores. Resiste el sol, la lluvia y el paso del tiempo.",
-        caracteristicas: caracteristicasBase,
-      },
-      {
-        id: "banca-terraza",
-        nombre: "Banca de Terraza",
-        subtitulo: "Ideal para quinchos",
-        imagen: "/img/bancas/banca1-5.jpg",
-        descripcion:
-          "Diseñada para terrazas y quinchos, combina comodidad y durabilidad para tus reuniones al aire libre.",
-        caracteristicas: caracteristicasBase,
-      },
-      {
-        id: "banca-jardin",
-        nombre: "Banca de Jardín",
-        subtitulo: "Estilo natural",
-        imagen: "/img/bancas/banca2-4.jpg",
-        descripcion:
-          "Banca de jardín con estilo natural que se integra perfectamente en espacios verdes.",
-        caracteristicas: caracteristicasBase,
-      },
     ],
   },
   {
