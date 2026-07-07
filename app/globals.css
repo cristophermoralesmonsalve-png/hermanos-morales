@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f4f4f4;
+  --foreground: #222222;
+  --card: #ffffff;
+  --card-foreground: #222222;
+  --dark: #111111;
+  --dark-foreground: #ffffff;
+  --primary: #d8a545;
+  --primary-hover: #bf8c30;
+  --primary-foreground: #111111;
+  --muted: #777777;
+  --border: #ececec;
+  --radius: 1rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-dark: var(--dark);
+  --color-dark-foreground: var(--dark-foreground);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --radius: var(--radius);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-playfair), Georgia, serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
