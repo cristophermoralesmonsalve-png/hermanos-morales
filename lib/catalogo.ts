@@ -8,6 +8,10 @@ export type Modelo = {
   imagen: string
   descripcion: string
   caracteristicas: string[]
+  /** Fotos adicionales del producto (además de `imagen`) para la galería de detalle. */
+  galeria?: string[]
+  /** Ficha técnica / lámina del producto mostrada en tamaño completo. */
+  ficha?: string
 }
 
 export type Categoria = {
@@ -120,6 +124,29 @@ export const categorias: Categoria[] = [
     descripcion: "Muebles resistentes",
     icono: Trees,
     modelos: [
+      {
+        id: "porta-maceteros",
+        nombre: "Porta Maceteros",
+        subtitulo: "Colección Roble",
+        imagen: "/img/exterior/exterior1-5.jpg",
+        descripcion:
+          "Fabricado en pino radiata macizo, este porta maceteros combina un diseño moderno con un acabado artesanal. Sus repisas permiten exhibir plantas, adornos y pequeños objetos decorativos, convirtiéndose en un elemento funcional que aporta calidez y personalidad a cualquier ambiente.",
+        caracteristicas: [
+          "Madera maciza de pino radiata",
+          "Tinte natural + protector exterior",
+          "Colores: natural, nogal y caoba",
+          "Medidas aprox. 70 × 40 × 9 cm",
+        ],
+        galeria: [
+          "/img/exterior/exterior1-5.jpg",
+          "/img/exterior/exterior1-6.jpg",
+          "/img/exterior/exterior1-7.jpg",
+          "/img/exterior/exterior1-4.jpg",
+          "/img/exterior/exterior1-3.jpg",
+          "/img/exterior/exterior1-2.jpg",
+        ],
+        ficha: "/img/exterior/macetero-principal.png",
+      },
       {
         id: "banca-exterior",
         nombre: "Banca de Exterior",

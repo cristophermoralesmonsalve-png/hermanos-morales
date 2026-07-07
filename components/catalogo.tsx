@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Image from "next/image"
 import { Check, MessageCircle } from "lucide-react"
 import { categorias, WHATSAPP_URL } from "@/lib/catalogo"
@@ -12,6 +12,14 @@ export function Catalogo() {
   const [modeloId, setModeloId] = useState(categoria.modelos[0].id)
   const modelo =
     categoria.modelos.find((m) => m.id === modeloId) ?? categoria.modelos[0]
+
+  const galeria = modelo.galeria ?? [modelo.imagen]
+  const [imagenActiva, setImagenActiva] = useState(modelo.imagen)
+
+  // Al cambiar de modelo, reiniciar la imagen principal del detalle.
+  useEffect(() => {
+    setImagenActiva(modelo.imagen)
+  }, [modelo.imagen])
 
   const handleCategoria = (id: string) => {
     setCategoriaId(id)
@@ -99,15 +107,43 @@ export function Catalogo() {
 
         {/* PANEL DERECHO — DETALLE */}
         <div className="rounded-2xl bg-card p-6 shadow-[0_15px_35px_rgba(0,0,0,0.08)] md:p-8">
-          <div className="relative mb-6 h-[280px] w-full overflow-hidden rounded-2xl md:h-[420px] lg:h-[520px]">
+          <div className="relative mb-4 h-[280px] w-full overflow-hidden rounded-2xl md:h-[420px] lg:h-[520px]">
             <Image
-              src={modelo.imagen || "/placeholder.svg"}
+              src={imagenActiva || "/placeholder.svg"}
               alt={modelo.nombre}
               fill
               sizes="(max-width: 1024px) 100vw, 40vw"
               className="object-cover transition-transform duration-300 hover:scale-[1.02]"
             />
           </div>
+
+          {galeria.length > 1 && (
+            <div className="mb-6 flex flex-wrap gap-3">
+              {galeria.map((src, i) => {
+                const activa = src === imagenActiva
+                return (
+                  <button
+                    key={src}
+                    type="button"
+                    onClick={() => setImagenActiva(src)}
+                    aria-pressed={activa}
+                    aria-label={`Ver foto ${i + 1} de ${modelo.nombre}`}
+                    className={`relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-xl border-2 transition-all md:h-20 md:w-20 ${
+                      activa ? "border-primary" : "border-transparent opacity-70 hover:opacity-100"
+                    }`}
+                  >
+                    <Image
+                      src={src || "/placeholder.svg"}
+                      alt=""
+                      fill
+                      sizes="80px"
+                      className="object-cover"
+                    />
+                  </button>
+                )
+              })}
+            </div>
+          )}
 
           <h2 className="mb-5 font-serif text-3xl font-bold text-card-foreground">
             {modelo.nombre}
@@ -125,6 +161,23 @@ export function Catalogo() {
               </li>
             ))}
           </ul>
+
+          {modelo.ficha && (
+            <div className="mb-9">
+              <h3 className="mb-4 font-serif text-xl font-bold text-card-foreground">
+                Ficha del producto
+              </h3>
+              <div className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl border border-border">
+                <Image
+                  src={modelo.ficha || "/placeholder.svg"}
+                  alt={`Ficha técnica del ${modelo.nombre}`}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  className="object-contain"
+                />
+              </div>
+            </div>
+          )}
 
           <a
             href={WHATSAPP_URL}
