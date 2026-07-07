@@ -12,6 +12,10 @@ export type Modelo = {
   galeria?: string[]
   /** Ficha técnica / lámina del producto mostrada en tamaño completo. */
   ficha?: string
+  /** Precio formateado, ej. "$25.000". */
+  precio?: string
+  /** Medidas del producto (etiqueta + valor), ej. { label: "Ancho", valor: "70 cm" }. */
+  medidas?: { label: string; valor: string }[]
 }
 
 export type Categoria = {
@@ -135,7 +139,13 @@ export const categorias: Categoria[] = [
           "Madera maciza de pino radiata",
           "Tinte natural + protector exterior",
           "Colores: natural, nogal y caoba",
-          "Medidas aprox. 70 × 40 × 9 cm",
+          "Hecho a mano, terminación artesanal",
+        ],
+        precio: "$25.000",
+        medidas: [
+          { label: "Ancho", valor: "70 cm (aprox.)" },
+          { label: "Alto", valor: "40 cm (aprox.)" },
+          { label: "Profundidad", valor: "9 cm (aprox.)" },
         ],
         galeria: [
           "/img/exterior/exterior1-5.jpg",

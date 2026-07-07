@@ -150,6 +150,37 @@ export function Catalogo() {
           </h2>
           <p className="mb-8 text-base leading-relaxed text-muted">{modelo.descripcion}</p>
 
+          {(modelo.precio || modelo.medidas) && (
+            <div className="mb-8 grid gap-6 rounded-2xl border border-border bg-black/[0.02] p-6 sm:grid-cols-2">
+              {modelo.medidas && (
+                <div>
+                  <h3 className="mb-3 text-sm font-bold uppercase tracking-wide text-muted">
+                    Medidas
+                  </h3>
+                  <ul className="flex flex-col gap-2">
+                    {modelo.medidas.map((m) => (
+                      <li
+                        key={m.label}
+                        className="flex items-center justify-between gap-4 text-card-foreground"
+                      >
+                        <span className="text-muted">{m.label}</span>
+                        <span className="font-semibold">{m.valor}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {modelo.precio && (
+                <div className="flex flex-col justify-center sm:items-end">
+                  <h3 className="mb-1 text-sm font-bold uppercase tracking-wide text-muted">
+                    Precio
+                  </h3>
+                  <p className="font-serif text-4xl font-bold text-primary">{modelo.precio}</p>
+                </div>
+              )}
+            </div>
+          )}
+
           <ul className="mb-9 flex flex-col">
             {modelo.caracteristicas.map((c) => (
               <li
