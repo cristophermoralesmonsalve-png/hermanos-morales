@@ -224,3 +224,17 @@ IMAGEN PRODUCTO
 .card:hover .producto-img{
     transform:scale(1.03);
 }
+nav{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.btn-oferta{
+    background:#ff3b30;
+    color:#fff;
+    padding:8px 16px;
+    border-radius:25px;
+    text-decoration:none;
+    font-weight:bold;
+}
