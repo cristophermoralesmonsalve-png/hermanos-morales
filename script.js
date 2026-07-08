@@ -1,502 +1,200 @@
 // ======================================
 // HERMANOS MORALES
-// script.js
-// ======================================
-
-
-// ======================================
-// NAVBAR
 // ======================================
 
 const navbar = document.querySelector(".navbar");
-
-window.addEventListener("scroll", () => {
-
-    if (window.scrollY > 50) {
-
-        navbar.classList.add("scrolled");
-
-    } else {
-
-        navbar.classList.remove("scrolled");
-
-    }
-
-});
-
-
-// ======================================
-// PANELES
-// ======================================
-
 const categorias = document.querySelectorAll(".categoria");
-
 const modelosContainer = document.querySelector(".modelos");
-
+const modelosLista = document.querySelector(".modelos-lista");
 const detalleProducto = document.querySelector(".detalle-producto");
-
-
-// Ocultar al iniciar
-
-modelosContainer.style.display = "none";
-
-detalleProducto.style.display = "none";
-
-
-// ======================================
-// MODELOS POR CATEGORÍA
-// ======================================
-
-const modelosPorCategoria = {
-
-0:`
-
-<h2>Modelos disponibles</h2>
-
-<div class="modelo">
-
-<img src="img/sofas/sofa1-7.jpg">
-
-<div class="modelo-info">
-
-<h3>Sillón Natural</h3>
-
-<span>Madera de pino</span>
-
-</div>
-
-</div>
-
-<div class="modelo">
-
-<img src="img/sofas/sofa1-6.jpg">
-
-<div class="modelo-info">
-
-<h3>Sillón Barniz Marino</h3>
-
-<span>Tono natural</span>
-
-</div>
-
-</div>
-
-<div class="modelo">
-
-<img src="img/sofas/sofa1-8.jpg">
-
-<div class="modelo-info">
-
-<h3>Sillón Nogal</h3>
-
-<span>Acabado natural</span>
-
-</div>
-
-</div>
-
-<div class="modelo">
-
-<img src="img/sofas/sofa1-1.jpg">
-
-<div class="modelo-info">
-
-<h3>Trabajos realizados</h3>
-
-<span>Diseño moderno</span>
-
-</div>
-
-</div>
-
-`,
-
-1:`
-
-<h2>Modelos disponibles</h2>
-
-<div class="modelo">
-
-<img src="img/bancas/banca1-1.jpg">
-
-<div class="modelo-info">
-
-<h3>Banca doble Natural</h3>
-
-<span>Madera de pino</span>
-
-</div>
-
-</div>
-
-<div class="modelo">
-
-<img src="img/bancas/banca1-2.jpg">
-
-<div class="modelo-info">
-
-<h3>Banca doble Barniz Marino</h3>
-
-<span>Tono natural</span>
-
-</div>
-
-</div>
-
-<div class="modelo">
-
-<img src="img/bancas/banca1-3.jpg">
-
-<div class="modelo-info">
-
-<h3>Banca doble Nogal</h3>
-
-<span>Acabado natural</span>
-
-</div>
-
-</div>
-<div class="modelo">
-
-<img src="img/bancas/banca2-2.jpg">
-
-<div class="modelo-info">
-
-<h3>Banca triple Natural</h3>
-
-<span>Madera de pino</span>
-
-</div>
-
-</div>
-
-<div class="modelo">
-
-<img src="img/bancas/banca2-3.jpg">
-
-<div class="modelo-info">
-
-<h3>Banca triple Barniz Marino</h3>
-
-<span>Tono natural</span>
-
-</div>
-
-</div>
-
-<div class="modelo">
-
-<img src="img/bancas/banca2-4.jpg">
-
-<div class="modelo-info">
-
-<h3>Banca triple Nogal</h3>
-
-<span>Acabado natural</span>
-
-</div>
-
-</div>
-
-<div class="modelo">
-
-<img src="img/sofas/sofa1-1.jpg">
-
-<div class="modelo-info">
-
-<h3>Trabajos realizados</h3>
-
-<span>Diseño moderno</span>
-
-</div>
-
-</div>
-
-`,
-
-2:`
-
-<h2>Modelos disponibles</h2>
-
-<div class="modelo">
-
-<img src="img/jardinyexterior/jardinera1-1.jpg">
-
-<div class="modelo-info">
-
-<h3>Jardinera Vertical de Madera</h3>
-
-<span>Ideal para plantas y decoración</span>
-
-</div>
-
-</div>
-
-`,
-
-3:`
-
-<h2>Modelos disponibles</h2>
-
-<div class="modelo">
-
-<img src="img/jardineinterior/portallaves1-1.jpg">
-
-<div class="modelo-info">
-
-<h3>Porta Llaves de Madera</h3>
-
-<span>Decoración para interiores</span>
-
-</div>
-
-</div>
-
-`
-
+const detalleImagen = document.querySelector(".detalle-imagen img");
+const detalleCategoria = document.querySelector(".detalle-categoria");
+const detalleTitulo = document.querySelector(".detalle-info h2");
+const detalleDescripcion = document.querySelector(".detalle-info p");
+const detallePrecio = document.querySelector(".detalle-precio");
+
+const beneficios = [
+    "Fabricación a medida",
+    "Diferentes colores y terminaciones",
+    "Terminación premium",
+    "Uso interior y exterior"
+];
+
+const catalogo = {
+    sillones: {
+        nombre: "Sillones individuales",
+        modelos: [
+            {
+                titulo: "Sillón natural",
+                detalle: "Madera de pino",
+                precio: "$50.000",
+                imagen: "img/sofas/sofa1-7.jpg"
+            },
+            {
+                titulo: "Sillón barniz marino",
+                detalle: "Tono natural",
+                precio: "$50.000",
+                imagen: "img/sofas/sofa1-6.jpg"
+            },
+            {
+                titulo: "Sillón nogal",
+                detalle: "Acabado natural",
+                precio: "$50.000",
+                imagen: "img/sofas/sofa1-8.jpg"
+            },
+            {
+                titulo: "Trabajos realizados",
+                detalle: "Diseño moderno",
+                precio: "$50.000",
+                imagen: "img/sofas/sofa1-1.jpg"
+            }
+        ]
+    },
+    bancas: {
+        nombre: "Bancas y asientos",
+        modelos: [
+            {
+                titulo: "Banca doble natural",
+                detalle: "Madera de pino",
+                precio: "$70.000",
+                imagen: "img/bancas/banca1-1.jpg"
+            },
+            {
+                titulo: "Banca doble barniz marino",
+                detalle: "Tono natural",
+                precio: "$70.000",
+                imagen: "img/bancas/banca1-2.jpg"
+            },
+            {
+                titulo: "Banca doble nogal",
+                detalle: "Acabado natural",
+                precio: "$70.000",
+                imagen: "img/bancas/banca1-3.jpg"
+            },
+            {
+                titulo: "Banca triple natural",
+                detalle: "Madera de pino",
+                precio: "$100.000",
+                imagen: "img/bancas/banca2-2.jpg"
+            },
+            {
+                titulo: "Banca triple barniz marino",
+                detalle: "Tono natural",
+                precio: "$100.000",
+                imagen: "img/bancas/banca2-3.jpg"
+            },
+            {
+                titulo: "Banca triple nogal",
+                detalle: "Acabado natural",
+                precio: "$100.000",
+                imagen: "img/bancas/banca2-4.jpg"
+            }
+        ]
+    },
+    exterior: {
+        nombre: "Jardín y exterior",
+        modelos: [
+            {
+                titulo: "Jardinera vertical de madera",
+                detalle: "Ideal para plantas y decoración",
+                precio: "$25.000",
+                imagen: "img/jardinyexterior/jardinera1-1.jpg"
+            }
+        ]
+    },
+    interior: {
+        nombre: "Interior",
+        modelos: [
+            {
+                titulo: "Organizador porta llaves",
+                detalle: "Decoración funcional para espacios interiores",
+                precio: "$20.000",
+                imagen: "img/ventas/Portallaves1-1.jpg.png"
+            }
+        ]
+    }
 };
 
-
-// ======================================
-// CATEGORÍAS
-// ======================================
-
-categorias.forEach((categoria,index)=>{
-
-    categoria.addEventListener("click",()=>{
-
-        categorias.forEach(c=>c.classList.remove("activa"));
-
-        categoria.classList.add("activa");
-
-        modelosContainer.innerHTML=modelosPorCategoria[index];
-
-        modelosContainer.style.display="block";
-
-        detalleProducto.style.display="none";
-
-        inicializarModelos();
-
-    });
-
+window.addEventListener("scroll", () => {
+    navbar.classList.toggle("scrolled", window.scrollY > 50);
 });
-// ======================================
-// MODELOS
-// ======================================
 
-function inicializarModelos(){
-
-    const modelos = document.querySelectorAll(".modelo");
-
-    const imagenDetalle =
-        document.querySelector(".detalle-imagen img");
-
-    const tituloDetalle =
-        document.querySelector(".detalle-info h2");
-
-    const descripcionDetalle =
-        document.querySelector(".detalle-info p");
-
-    modelos.forEach((modelo)=>{
-
-        modelo.addEventListener("click",()=>{
-
-            // Quitar selección anterior
-
-            modelos.forEach(m=>{
-
-                m.classList.remove("activo");
-
-            });
-
-            // Marcar seleccionado
-
-            modelo.classList.add("activo");
-
-            // Actualizar imagen
-
-            imagenDetalle.src =
-                modelo.querySelector("img").src;
-
-            // Actualizar título
-
-            tituloDetalle.textContent =
-                modelo.querySelector("h3").textContent;
-
-            // Actualizar descripción
-
-            descripcionDetalle.textContent =
-                "Modelo " +
-                modelo.querySelector("h3").textContent +
-                ". " +
-                modelo.querySelector("span").textContent +
-                ". Fabricado completamente a medida con distintas opciones de madera, color y terminaciones.";
-
-            // Mostrar detalle
-
-            detalleProducto.style.display = "block";
-
-        });
-
-    });
-
-}
-
-
-// ======================================
-// INICIALIZACIÓN
-// ======================================
-
-// NO LLAMAR inicializarModelos() AL CARGAR LA PÁGINA
-// porque los modelos están ocultos.
-//
-// Solo se ejecuta después de hacer click
-// en una categoría.
-// ======================================
-// CATEGORÍAS
-// ======================================
-
-categorias.forEach((categoria, index) => {
-
+categorias.forEach((categoria) => {
     categoria.addEventListener("click", () => {
+        const categoriaId = categoria.dataset.category;
 
-        // Activar categoría
-        categorias.forEach(c => c.classList.remove("activa"));
+        categorias.forEach((item) => item.classList.remove("activa"));
         categoria.classList.add("activa");
 
-        // Ocultar detalle mientras cambia de categoría
-        detalleProducto.style.display = "none";
-
-        // Cargar modelos
-        if (modelosPorCategoria[index]) {
-
-            modelosContainer.innerHTML = modelosPorCategoria[index];
-
-            // Mostrar panel modelos
-            modelosContainer.style.display = "block";
-
-            // IMPORTANTE:
-            // Esperar que el HTML exista antes de asignar eventos
-
-            setTimeout(() => {
-
-                inicializarModelos();
-
-            }, 0);
-
-        }
-
+        cargarCategoria(categoriaId);
     });
-
 });
-// ======================================
-// MODELOS
-// ======================================
 
-function inicializarModelos() {
+function cargarCategoria(categoriaId) {
+    const categoria = catalogo[categoriaId];
 
-    const modelos = document.querySelectorAll(".modelo");
+    if (!categoria) {
+        return;
+    }
 
-    const imagenDetalle =
-        document.querySelector(".detalle-imagen img");
+    modelosLista.innerHTML = categoria.modelos
+        .map((modelo, index) => crearModelo(modelo, index))
+        .join("");
 
-    const tituloDetalle =
-        document.querySelector(".detalle-info h2");
+    modelosContainer.hidden = false;
+    detalleProducto.hidden = false;
 
-    const descripcionDetalle =
-        document.querySelector(".detalle-info p");
+    const modelos = modelosLista.querySelectorAll(".modelo");
 
-    modelos.forEach((modelo) => {
-
-        // Evita duplicar eventos
-        modelo.onclick = null;
-
-        modelo.onclick = function () {
-
-            modelos.forEach(m => {
-                m.classList.remove("activo");
-            });
-
-            this.classList.add("activo");
-
-            const img = this.querySelector("img");
-            const titulo = this.querySelector("h3");
-            const subtitulo = this.querySelector("span");
-
-            imagenDetalle.src = img.src;
-            imagenDetalle.alt = titulo.textContent;
-
-            tituloDetalle.textContent = titulo.textContent;
-
-            descripcionDetalle.textContent =
-                "Modelo " +
-                titulo.textContent +
-                ". " +
-                subtitulo.textContent +
-                ". Fabricado completamente a medida con distintas opciones de madera, color y terminaciones.";
-
-            detalleProducto.style.display = "block";
-
-            detalleProducto.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
-
-        };
-
+    modelos.forEach((modelo, index) => {
+        modelo.addEventListener("click", () => {
+            seleccionarModelo(categoriaId, index);
+        });
     });
 
+    seleccionarModelo(categoriaId, 0);
 }
-// ======================================
-// INICIALIZACIÓN
-// ======================================
 
-// Al iniciar la página
+function crearModelo(modelo, index) {
+    return `
+        <button class="modelo" type="button" data-index="${index}">
+            <img src="${modelo.imagen}" alt="${modelo.titulo}">
+            <span class="modelo-info">
+                <strong>${modelo.titulo}</strong>
+                <small>${modelo.detalle}</small>
+                <em>${modelo.precio}</em>
+            </span>
+        </button>
+    `;
+}
+
+function seleccionarModelo(categoriaId, modeloIndex) {
+    const categoria = catalogo[categoriaId];
+    const modelo = categoria.modelos[modeloIndex];
+
+    modelosLista.querySelectorAll(".modelo").forEach((item, index) => {
+        item.classList.toggle("activo", index === modeloIndex);
+    });
+
+    detalleImagen.src = modelo.imagen;
+    detalleImagen.alt = modelo.titulo;
+    detalleCategoria.textContent = categoria.nombre;
+    detalleTitulo.textContent = modelo.titulo;
+    detalleDescripcion.textContent = `${modelo.detalle}. Fabricado completamente a medida con opciones de madera, color y terminación según tu espacio.`;
+    detallePrecio.textContent = modelo.precio;
+    detallePrecio.hidden = false;
+
+    actualizarBeneficios();
+}
+
+function actualizarBeneficios() {
+    const lista = detalleProducto.querySelector("ul");
+
+    lista.innerHTML = beneficios
+        .map((beneficio) => `<li>${beneficio}</li>`)
+        .join("");
+}
+
 window.addEventListener("DOMContentLoaded", () => {
-
-    // Ocultar paneles
-    modelosContainer.style.display = "none";
-    detalleProducto.style.display = "none";
-
-    // Limpiar categorías activas
-    categorias.forEach(c => c.classList.remove("activa"));
-
+    cargarCategoria("bancas");
 });
-
-
-// ======================================
-// FUNCIONES EXTRA
-// ======================================
-
-// Mostrar panel de modelos
-function mostrarModelos() {
-
-    modelosContainer.style.display = "block";
-
-}
-
-// Ocultar panel de modelos
-function ocultarModelos() {
-
-    modelosContainer.style.display = "none";
-
-}
-
-// Mostrar detalle
-function mostrarDetalle() {
-
-    detalleProducto.style.display = "block";
-
-}
-
-// Ocultar detalle
-function ocultarDetalle() {
-
-    detalleProducto.style.display = "none";
-
-}
-
-
-// ======================================
-// FIN SCRIPT
-// ======================================

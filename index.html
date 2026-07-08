@@ -2,449 +2,213 @@
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Hermanos Morales | Muebles a Medida</title>
 
     <link rel="stylesheet" href="style.css">
-
-    <!-- ICONOS -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 
 <body>
-
-    <!-- ===================================== -->
-    <!-- NAVBAR -->
-    <!-- ===================================== -->
-
     <nav class="navbar">
-
-        <div class="logo">
-            Hermanos Morales
-        </div>
+        <a class="logo" href="#inicio">Hermanos Morales</a>
 
         <ul class="menu">
-
-            <li><a href="#">Inicio</a></li>
-
-            <li><a href="#catalogo">
-                Catálogo
-            </a></li>
-
-            <li><a href="#">
-                Galería
-            </a></li>
-
-            <li><a href="#">
-                Contacto
-            </a></li>
-
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#catalogo">Catálogo</a></li>
+            <li><a href="#galeria">Galería</a></li>
+            <li><a href="#contacto">Contacto</a></li>
             <li>
-
-                <a href="https://wa.me/56966060170"
-                    class="btn-oferta"
-                    target="_blank">
-
+                <a href="https://wa.me/56966060170" class="btn-oferta" target="_blank" rel="noopener">
                     Cotizar
-
                 </a>
-
             </li>
-
         </ul>
-
     </nav>
 
-
-    <!-- ===================================== -->
-    <!-- HERO -->
-    <!-- ===================================== -->
-
-    <header class="hero">
-
+    <header class="hero" id="inicio">
         <div class="hero-texto">
+            <span class="hero-etiqueta">Carpintería familiar a medida</span>
 
             <h1>
-
-                Muebles de madera
-                <br>
-                hechos a medida
-
+                <span>Muebles de madera</span>
+                <strong>hechos a medida</strong>
             </h1>
 
             <p>
-
-                Diseñamos y fabricamos muebles únicos para tu hogar,
-                terraza o jardín.
-
+                Diseñamos y fabricamos muebles únicos para tu hogar, terraza o jardín.
             </p>
 
-            <a href="#catalogo" class="btn">
+            <div class="hero-acciones">
+                <a href="#catalogo" class="btn">Ver Catálogo</a>
+                <a href="#nosotros" class="btn-secundario">Conocer el oficio</a>
+            </div>
 
-                Ver Catálogo
-
-            </a>
-
+            <div class="hero-datos" aria-label="Datos destacados">
+                <span>Fabricación propia</span>
+                <span>Medidas personalizadas</span>
+                <span>Terminación premium</span>
+            </div>
         </div>
-
     </header>
 
-
-    <!-- ===================================== -->
-    <!-- CATÁLOGO -->
-    <!-- ===================================== -->
-
-    <section class="catalogo" id="catalogo">
-
-        <div class="catalogo-contenedor">
-
-            <!-- ============================= -->
-            <!-- PANEL IZQUIERDO -->
-            <!-- ============================= -->
-
-            <aside class="categorias">
-
-                <h2>
-
-                    Categorías
-
-                </h2>
-                                <!-- BOTÓN 1 -->
-
-                <div class="categoria">
-
-                    <div class="categoria-icono">
-
-                        <i class="fa-solid fa-couch"></i>
-
-                    </div>
-
-                    <div class="categoria-info">
-
-                        <h3>Sillones individuales</h3>
-
-                        <span>Modelos personalizados</span>
-
-                    </div>
-
+    <main>
+        <section class="nosotros" id="nosotros">
+            <div class="nosotros-contenedor">
+                <div class="nosotros-imagen">
+                    <img src="img/bancas/banca1-4.jpg" alt="Mueble de madera fabricado por Hermanos Morales">
                 </div>
 
-
-                <!-- BOTÓN 2 -->
-
-                <div class="categoria">
-
-                    <div class="categoria-icono">
-
-                        <i class="fa-solid fa-chair"></i>
-
-                    </div>
-
-                    <div class="categoria-info">
-
-                        <h3>Bancas y Asientos</h3>
-
-                        <span>Diferentes estilos</span>
-
-                    </div>
-
-                </div>
-
-
-                <!-- BOTÓN 3 -->
-
-                <div class="categoria">
-
-                    <div class="categoria-icono">
-
-                        <i class="fa-solid fa-tree"></i>
-
-                    </div>
-
-                    <div class="categoria-info">
-
-                        <h3>Jardín y Exterior</h3>
-
-                        <span>Muebles resistentes</span>
-
-                    </div>
-
-                </div>
-
-
-                <!-- BOTÓN 4 -->
-
-                <div class="categoria">
-
-                    <div class="categoria-icono">
-
-                        <i class="fa-solid fa-house"></i>
-
-                    </div>
-
-                    <div class="categoria-info">
-
-                        <h3>Interior</h3>
-
-                        <span>Diseños modernos</span>
-
-                    </div>
-
-                </div>
-
-            </aside>
-
-
-            <!-- ============================= -->
-            <!-- PANEL CENTRAL -->
-            <!-- ============================= -->
-
-            <section class="modelos">
-
-                <h2>
-
-                    Modelos disponibles
-
-                </h2>
-
-<!-- MODELO 1 -->
-
-<div class="modelo activo">
-
-    <img
-        src="img/bancas/banca1-1.jpg"
-        alt="Banca doble Natural">
-
-    <div class="modelo-info">
-
-        <h3>Banca doble Natural</h3>
-
-        <span>Madera de pino</span>
-
-    </div>
-
-</div>
-
-
-<!-- MODELO 2 -->
-
-<div class="modelo">
-
-    <img
-        src="img/bancas/banca1-2.jpg"
-        alt="Banca doble barniz marino">
-
-    <div class="modelo-info">
-
-        <h3>Banca doble barniz marino</h3>
-
-        <span>Tono natural</span>
-
-    </div>
-
-</div>
-
-
-<!-- MODELO 3 -->
-
-<div class="modelo">
-
-    <img
-        src="img/bancas/banca1-3.jpg"
-        alt="Banca doble Nogal">
-
-    <div class="modelo-info">
-
-        <h3>Banca doble Nogal</h3>
-
-        <span>Acabado natural</span>
-
-    </div>
-
-</div>
-
-
-<!-- MODELO 4 -->
-
-<div class="modelo">
-
-    <img
-        src="img/bancas/banca2-2.jpg"
-        alt="Banca triple Natural">
-
-    <div class="modelo-info">
-
-        <h3>Banca triple Natural</h3>
-
-        <span>Madera de pino</span>
-
-    </div>
-
-</div>
-
-
-<!-- MODELO 5 -->
-
-<div class="modelo">
-
-    <img
-        src="img/bancas/banca2-3.jpg"
-        alt="Banca triple barniz marino">
-
-    <div class="modelo-info">
-
-        <h3>Banca triple barniz marino</h3>
-
-        <span>Tono natural</span>
-
-    </div>
-
-</div>
-
-
-<!-- MODELO 6 -->
-
-<div class="modelo">
-
-    <img
-        src="img/bancas/banca2-4.jpg"
-        alt="Banca triple Nogal">
-
-    <div class="modelo-info">
-
-        <h3>Banca triple Nogal</h3>
-
-        <span>Acabado natural</span>
-
-    </div>
-
-</div>
-
-
-<!-- MODELO 7 -->
-
-<div class="modelo">
-
-    <img
-        src="img/sofas/sofa1-1.jpg"
-        alt="Trabajos realizados">
-
-    <div class="modelo-info">
-
-        <h3>Trabajos realizados</h3>
-
-        <span>Diseño moderno</span>
-
-    </div>
-
-</div>
-            </section>
-
-
-            <!-- ============================= -->
-            <!-- PANEL DERECHO -->
-            <!-- ============================= -->
-
-            <section class="detalle-producto">
-
-                <div class="detalle-imagen">
-
-                    <img
-                        src="img/bancas/banca1-1.jpg"
-                        alt="Banca Natural">
-
-                </div>
-
-                <div class="detalle-info">
-
-                    <h2>
-
-                        Banca Natural
-
-                    </h2>
+                <div class="nosotros-texto">
+                    <span>Nosotros</span>
+                    <h2>Un oficio heredado, trabajado con paciencia y buena madera</h2>
 
                     <p>
-
-                        Fabricada en madera de alta calidad.
-                        Ideal para terrazas, jardines,
-                        quinchos y espacios interiores.
-
+                        En Hermanos Morales cada mueble nace de un oficio familiar: medir, cortar,
+                        lijar, ensamblar y terminar cada pieza con cuidado. Fabricamos muebles
+                        pensados para durar, adaptados al espacio de cada cliente y con ese carácter
+                        único que solo tiene el trabajo hecho a mano.
                     </p>
 
-                    <ul>
-
-                        <li>✔ Fabricación a medida</li>
-
-                        <li>✔ Diferentes colores</li>
-
-                        <li>✔ Terminación premium</li>
-
-                        <li>✔ Uso interior y exterior</li>
-
-                    </ul>
-
-                    <a
-                        href="https://wa.me/56966060170"
-                        class="btn"
-                        target="_blank">
-
-                        Cotizar por WhatsApp
-
-                    </a>
-
+                    <a href="#catalogo" class="btn">Ver modelos</a>
                 </div>
+            </div>
+        </section>
 
-            </section>
+        <section class="catalogo" id="catalogo">
+            <div class="seccion-encabezado">
+                <span>Catálogo</span>
+                <h2>Elige una categoría y revisa los modelos disponibles</h2>
+            </div>
 
-        </div>
+            <div class="catalogo-contenedor">
+                <aside class="categorias" aria-label="Categorías del catálogo">
+                    <h2>Categorías</h2>
 
-    </section>
-        <!-- ===================================== -->
-    <!-- FOOTER -->
-    <!-- ===================================== -->
+                    <button class="categoria" type="button" data-category="sillones">
+                        <span class="categoria-icono">
+                            <i class="fa-solid fa-couch"></i>
+                        </span>
 
-    <footer class="footer">
+                        <span class="categoria-info">
+                            <strong>Sillones individuales</strong>
+                            <small>Modelos personalizados</small>
+                        </span>
+                    </button>
 
+                    <button class="categoria activa" type="button" data-category="bancas">
+                        <span class="categoria-icono">
+                            <i class="fa-solid fa-chair"></i>
+                        </span>
+
+                        <span class="categoria-info">
+                            <strong>Bancas y asientos</strong>
+                            <small>Diferentes estilos</small>
+                        </span>
+                    </button>
+
+                    <button class="categoria" type="button" data-category="exterior">
+                        <span class="categoria-icono">
+                            <i class="fa-solid fa-tree"></i>
+                        </span>
+
+                        <span class="categoria-info">
+                            <strong>Jardín y exterior</strong>
+                            <small>Muebles resistentes</small>
+                        </span>
+                    </button>
+
+                    <button class="categoria" type="button" data-category="interior">
+                        <span class="categoria-icono">
+                            <i class="fa-solid fa-house"></i>
+                        </span>
+
+                        <span class="categoria-info">
+                            <strong>Interior</strong>
+                            <small>Diseños modernos</small>
+                        </span>
+                    </button>
+                </aside>
+
+                <section class="modelos" aria-live="polite">
+                    <h2>Modelos disponibles</h2>
+                    <div class="modelos-lista"></div>
+                </section>
+
+                <section class="detalle-producto" aria-live="polite">
+                    <div class="detalle-imagen">
+                        <img src="img/bancas/banca1-1.jpg" alt="Banca doble natural">
+                    </div>
+
+                    <div class="detalle-info">
+                        <span class="detalle-categoria">Bancas y asientos</span>
+                        <h2>Banca doble natural</h2>
+
+                        <p>
+                            Fabricada en madera de alta calidad. Ideal para terrazas, jardines,
+                            quinchos y espacios interiores.
+                        </p>
+
+                        <strong class="detalle-precio" hidden></strong>
+
+                        <ul>
+                            <li>Fabricación a medida</li>
+                            <li>Diferentes colores y terminaciones</li>
+                            <li>Terminación premium</li>
+                            <li>Uso interior y exterior</li>
+                        </ul>
+
+                        <a href="https://wa.me/56966060170" class="btn" target="_blank" rel="noopener">
+                            Cotizar por WhatsApp
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <section class="galeria" id="galeria">
+            <div class="seccion-encabezado">
+                <span>Galería</span>
+                <h2>Trabajos recientes en madera</h2>
+            </div>
+
+            <div class="galeria-grid">
+                <img src="img/bancas/banca1-4.jpg" alt="Banca de madera terminada">
+                <img src="img/sofas/sofa1-5.jpg" alt="Sillón individual de madera">
+                <img src="img/jardinyexterior/jardinera1-1.jpg" alt="Jardinera vertical de madera">
+                <img src="img/bancas/banca2-1.jpg" alt="Banca triple de madera">
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="contacto">
         <div class="footer-contenedor">
-
             <div class="footer-logo">
-
                 <h2>Hermanos Morales</h2>
 
                 <p>
-
-                    Fabricación de muebles de madera a medida.
-                    Diseños exclusivos para interiores y exteriores.
-
+                    Fabricación de muebles de madera a medida. Diseños exclusivos para interiores
+                    y exteriores.
                 </p>
-
             </div>
 
             <div class="footer-contacto">
-
                 <h3>Contacto</h3>
 
                 <p>
-
                     <i class="fa-brands fa-whatsapp"></i>
-
-                    +56 9 6606 0170
-
+                    <a href="https://wa.me/56966060170" target="_blank" rel="noopener">
+                        +56 9 6606 0170
+                    </a>
                 </p>
-
             </div>
-
         </div>
-
     </footer>
 
     <script src="script.js"></script>
-
 </body>
 
 </html>
