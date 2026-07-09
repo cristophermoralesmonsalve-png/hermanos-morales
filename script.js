@@ -203,19 +203,20 @@ const lightboxImg = document.getElementById("lightbox-img");
 
 document.addEventListener("click", (e) => {
 
-    if(e.target.tagName === "IMG"){
+    if (e.target === lightboxImg) {
+
+        lightbox.classList.remove("activo");
+        return;
+
+    }
+
+    if (e.target.tagName === "IMG" && e.target.id !== "lightbox-img") {
 
         lightbox.classList.add("activo");
         lightboxImg.src = e.target.src;
         lightboxImg.alt = e.target.alt;
 
     }
-
-});
-
-lightbox.addEventListener("click", () => {
-
-    lightbox.classList.remove("activo");
 
 });
 
