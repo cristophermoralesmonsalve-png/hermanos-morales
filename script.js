@@ -198,3 +198,24 @@ function actualizarBeneficios() {
 window.addEventListener("DOMContentLoaded", () => {
     cargarCategoria("bancas");
 });
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+
+document.addEventListener("click", (e) => {
+
+    if(e.target.tagName === "IMG"){
+
+        lightbox.classList.add("activo");
+        lightboxImg.src = e.target.src;
+        lightboxImg.alt = e.target.alt;
+
+    }
+
+});
+
+lightbox.addEventListener("click", () => {
+
+    lightbox.classList.remove("activo");
+
+});
+

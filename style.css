@@ -11,7 +11,11 @@ RESET
 html{
     scroll-behavior:smooth;
 }
-
+body{
+    transform:scale(.8);
+    transform-origin:top center;
+    width:100%;
+}
 body{
     font-family:Arial, Helvetica, sans-serif;
     background:#f3eee5;
@@ -25,7 +29,7 @@ a{
 
 img{
     display:block;
-    max-width:100%;
+    max-width:120%;
 }
 
 button{
@@ -87,7 +91,11 @@ BOTONES
 /*======================================
 NAVBAR
 ======================================*/
-
+.navbar{
+    transform:scale(.9);
+    transform-origin:top center;
+    width:111.11%;
+}
 .navbar{
     position:fixed;
     top:0;
@@ -139,14 +147,15 @@ HERO
 ======================================*/
 
 .hero{
-    min-height:100vh;
+    min-height:112vh;
     padding:120px 8% 70px;
     display:flex;
-    align-items:center;
+    align-items:normal;
     background:
         radial-gradient(circle at 18% 32%, rgba(216,165,69,.28), transparent 28%),
         linear-gradient(90deg, rgba(0,0,0,.82), rgba(0,0,0,.58) 48%, rgba(0,0,0,.28)),
-        url("img/portada.png") center/cover no-repeat;
+        url("img/portada.png") center/90% no-repeat;
+        
 }
 
 .hero-texto{
@@ -171,7 +180,7 @@ HERO
 .hero-texto h1{
     max-width:820px;
     margin-bottom:25px;
-    font-size:76px;
+    font-size:34px;
     line-height:.98;
     letter-spacing:-.03em;
     text-wrap:balance;
@@ -273,7 +282,7 @@ NOSOTROS
 .nosotros-imagen{
     position:relative;
     overflow:hidden;
-    min-height:520px;
+    min-height:300px;
     border-radius:16px;
     box-shadow:0 24px 55px rgba(0,0,0,.18);
 }
@@ -293,7 +302,7 @@ NOSOTROS
 .nosotros-imagen img{
     width:100%;
     height:100%;
-    min-height:520px;
+    min-height:120px;
     object-fit:cover;
 }
 
@@ -331,11 +340,11 @@ CATÁLOGO
 ======================================*/
 
 .catalogo-contenedor{
-    max-width:1600px;
+    max-width:1500px;
     margin:auto;
     display:grid;
-    grid-template-columns:280px 320px 1fr;
-    gap:30px;
+    grid-template-columns:280px 300px 1fr;
+    gap:10px;
     align-items:flex-start;
 }
 
@@ -347,8 +356,8 @@ CATÁLOGO
 
 .categorias{
     position:sticky;
-    top:110px;
-    padding:25px;
+    top:10px;
+    padding:20px;
     color:#fff;
     background:#111;
     box-shadow:0 18px 45px rgba(0,0,0,.22);
@@ -507,7 +516,7 @@ CATÁLOGO
 
 .detalle-imagen img{
     width:100%;
-    height:520px;
+    height:280px;
     object-fit:cover;
     transition:.35s;
 }
@@ -686,7 +695,7 @@ RESPONSIVE
 
     .nosotros-imagen,
     .nosotros-imagen img{
-        min-height:380px;
+        min-height:480px;
     }
 
     .categorias{
@@ -774,4 +783,42 @@ RESPONSIVE
     .galeria-grid img{
         height:260px;
     }
+}
+/* ===== LIGHTBOX ===== */
+
+.lightbox{
+    position:fixed;
+    width:80%;
+    height:80%;
+    top:10%;
+    left:10%;
+    background:rgba(0,0,0,.9);
+    display:none;
+    overflow:hidden;
+    justify-content:center;
+    align-items:center;
+    border-radius:15px;
+    z-index:9999;
+}
+
+.lightbox.activo{
+    display:flex;
+}
+
+.lightbox img{
+    max-width:90%;
+    max-height:90%;
+    border-radius:12px;
+    box-shadow:0 0 40px rgba(0,0,0,.5);
+}
+
+.cerrar{
+    position:fixed;
+    top:20px;
+    right:25px;
+    color:#fff;
+    font-size:55px;
+    font-weight:bold;
+    cursor:pointer;
+    z-index:10000;
 }
