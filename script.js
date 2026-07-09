@@ -177,6 +177,13 @@ function seleccionarModelo(categoriaId, modeloIndex) {
     });
 
     detalleImagen.src = modelo.imagen;
+    detalleImagen.onclick = () => {
+
+    lightbox.classList.add("activo");
+    lightboxImg.src = modelo.imagen;
+    lightboxImg.alt = modelo.titulo;
+
+};
     detalleImagen.alt = modelo.titulo;
     detalleCategoria.textContent = categoria.nombre;
     detalleTitulo.textContent = modelo.titulo;
@@ -200,23 +207,47 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
+const imagenGrande = document.getElementById("imagenGrande");
+
+imagenGrande.addEventListener("click", () => {
+
+    lightbox.classList.add("activo");
+    lightboxImg.src = imagenGrande.src;
+    lightboxImg.alt = imagenGrande.alt;
+
+});
 
 document.addEventListener("click", (e) => {
 
-    if (e.target === lightboxImg) {
+    if (
+        e.target === lightbox ||
+        e.target === lightboxImg ||
+        e.target.classList.contains("cerrar")
+    ) {
 
         lightbox.classList.remove("activo");
-        return;
-
-    }
-
-    if (e.target.tagName === "IMG" && e.target.id !== "lightbox-img") {
-
-        lightbox.classList.add("activo");
-        lightboxImg.src = e.target.src;
-        lightboxImg.alt = e.target.alt;
 
     }
 
 });
 
+function cambiarImagen(imagen){
+
+    const grande = document.getElementById("imagenGrande");
+
+    // Pequeño efecto
+    grande.style.opacity = "0";
+
+    setTimeout(() => {
+        grande.src = imagen.src;
+        grande.style.opacity = "1";
+    }, 180);
+
+    // Quitar selección anterior
+    document.querySelectorAll(".thumb").forEach(img=>{
+        img.classList.remove("activa");
+    });
+
+    // Marcar la seleccionada
+    imagen.classList.add("activa");
+}
