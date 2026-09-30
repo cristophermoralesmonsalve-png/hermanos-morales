@@ -43,6 +43,7 @@
             <li><a href="#catalogo">Catálogo</a></li>
             <li><a href="#galeria">Galería</a></li>
             <li><a href="#contacto">Contacto</a></li>
+            <li><a href="#videos">Videos</a></li>
             <li>
                 <a href="https://wa.me/56966060170" class="btn-oferta" target="_blank" rel="noopener">
                     Cotizar
@@ -151,6 +152,17 @@
                         <span class="categoria-info">
                             <strong>Interior</strong>
                             <small>Diseños modernos</small>
+                        </span>
+                    </button>
+
+                     <button class="categoria activa" type="button" data-category="bancas">
+                        <span class="categoria-icono">
+                            <i class="fa-solid fa-chair"></i>
+                        </span>
+
+                        <span class="categoria-info">
+                            <strong>Juegos</strong>
+                            <small>Diferentes estilos</small>
                         </span>
                     </button>
                 </aside>
@@ -274,6 +286,24 @@
 </div>
         </section>
     </main>
+
+    <section id="videos" class="hm-videos" aria-labelledby="hm-video-title">
+        <div class="hm-video-card">
+            <h2 id="hm-video-title">Sala de videos</h2>
+            <p>Pega un enlace de YouTube y reproduce el video aquí.</p>
+            <form id="hm-video-form">
+                <label for="hm-video-url">Enlace del video</label>
+                <div class="hm-video-controls">
+                    <input id="hm-video-url" type="text" inputmode="url" placeholder="https://www.youtube.com/watch?v=…" required autocomplete="off">
+                    <button type="submit">Cargar video</button>
+                    <button type="button" id="hm-video-clear">Limpiar</button>
+                </div>
+            </form>
+            <p id="hm-video-status" role="status" aria-live="polite">Acepta enlaces normales, cortos, Shorts y directos.</p>
+            <div id="hm-video-player" class="hm-video-player" hidden></div>
+            <p class="hm-video-help">Después de cargarlo, presiona ▶ para reproducir. Algunos videos no permiten reproducción en otras páginas. La reproducción depende de la conexión y de los permisos de la red.</p>
+        </div>
+    </section>
 
     <footer class="footer" id="contacto">
         <div class="footer-contenedor">

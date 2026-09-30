@@ -2,6 +2,102 @@
 // HERMANOS MORALES
 // ======================================
 
+// REPRODUCTOR DE YOUTUBE
+function hmYoutubeId(value) {
+    try {
+        const raw = value.trim();
+        const url = new URL(
+            /^https?:\/\//i.test(raw) ? raw : "https://" + raw
+        );
+
+        if (
+            !["http:", "https:"].includes(url.protocol) ||
+            url.username ||
+            url.password
+        ) {
+            return null;
+        }
+
+        const host = url.hostname.toLowerCase();
+        const parts = url.pathname.split("/").filter(Boolean);
+        let id = null;
+
+        if (["youtu.be", "www.youtu.be"].includes(host)) {
+            id = parts[0];
+        } else if (
+            [
+                "youtube.com",
+                "www.youtube.com",
+                "m.youtube.com",
+                "music.youtube.com"
+            ].includes(host)
+        ) {
+            if (url.pathname === "/watch") {
+                id = url.searchParams.get("v");
+            } else if (
+                ["shorts", "live", "embed"].includes(parts[0])
+            ) {
+                id = parts[1];
+            }
+        }
+
+        return id && /^[A-Za-z0-9_-]{11}$/.test(id) ? id : null;
+    } catch {
+        return null;
+    }
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("hm-video-form");
+    if (!form) return;
+
+    const input = document.getElementById("hm-video-url");
+    const player = document.getElementById("hm-video-player");
+    const status = document.getElementById("hm-video-status");
+    const clear = document.getElementById("hm-video-clear");
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const id = hmYoutubeId(input.value);
+
+        if (!id) {
+            status.textContent =
+                "Revisa el enlace: debe ser de un video de YouTube válido.";
+            input.setAttribute("aria-invalid", "true");
+            input.focus();
+            return;
+        }
+
+        input.removeAttribute("aria-invalid");
+
+        const iframe = document.createElement("iframe");
+        iframe.title = "Reproductor de YouTube";
+        iframe.src =
+            "https://www.youtube.com/embed/" + id + "?playsinline=1";
+        iframe.allow =
+            "accelerometer; autoplay; clipboard-write; encrypted-media; " +
+            "gyroscope; picture-in-picture; web-share";
+        iframe.allowFullscreen = true;
+        iframe.referrerPolicy = "strict-origin-when-cross-origin";
+
+        player.replaceChildren(iframe);
+        player.hidden = false;
+
+        status.textContent =
+            "Reproductor insertado. Presiona ▶. Si aparece un error, " +
+            "prueba otro video o revisa el acceso de la red.";
+    });
+
+    clear.addEventListener("click", () => {
+        player.replaceChildren();
+        player.hidden = true;
+        form.reset();
+        input.removeAttribute("aria-invalid");
+        status.textContent = "Pega otro enlace para cargar un video.";
+        input.focus();
+    });
+});
 const navbar = document.querySelector(".navbar");
 const categorias = document.querySelectorAll(".categoria");
 const modelosContainer = document.querySelector(".modelos");
