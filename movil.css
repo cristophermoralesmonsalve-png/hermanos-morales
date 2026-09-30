@@ -1,0 +1,139 @@
+/*======================================
+ADAPTACIÓN PARA CELULARES
+Cargar DESPUÉS de style.css
+======================================*/
+
+/* Evita que las imágenes se salgan de la pantalla */
+img{ max-width:100%; }
+
+@media (max-width:992px){
+
+    html, body{ overflow-x:hidden; }
+
+    section, footer, header{ scroll-margin-top:110px; }
+
+    /* Barra superior: fija, compacta y con menú deslizable */
+    .navbar{
+        position:fixed;
+        transform:none;
+        width:100%;
+        padding:10px 5% 8px;
+        gap:6px;
+        align-items:flex-start;
+        flex-direction:column;
+        background:#111;
+    }
+
+    .logo{ font-size:22px; }
+
+    .menu{
+        width:100%;
+        flex-wrap:nowrap;
+        justify-content:flex-start;
+        gap:20px;
+        overflow-x:auto;
+        white-space:nowrap;
+        padding-bottom:6px;
+        font-size:15px;
+        -webkit-overflow-scrolling:touch;
+        scrollbar-width:none;
+    }
+    .menu::-webkit-scrollbar{ display:none; }
+    .btn-oferta{ padding:8px 16px; }
+
+    /* Portada */
+    .hero{
+        min-height:auto;
+        padding:150px 6% 60px;
+        background-size:cover;
+    }
+
+    .nosotros, .catalogo, .galeria{ padding-top:56px; padding-bottom:56px; }
+    .galeria{ padding-top:20px; }
+    .nosotros-imagen, .nosotros-imagen img{ min-height:300px; }
+
+    /* Catálogo: categorías en una fila que se desliza con el dedo */
+    .catalogo-contenedor{ gap:18px; }
+
+    .categorias{
+        position:relative;
+        top:0;
+        display:flex;
+        gap:10px;
+        padding:14px;
+        overflow-x:auto;
+        scroll-snap-type:x proximity;
+        scrollbar-width:none;
+    }
+    .categorias::-webkit-scrollbar{ display:none; }
+    .categorias h2{ display:none; }
+
+    .categoria{
+        flex:0 0 auto;
+        width:auto;
+        min-width:190px;
+        margin:0;
+        padding:12px;
+        gap:12px;
+        scroll-snap-align:start;
+    }
+    .categoria:hover{ transform:none; }
+    .categoria-icono{ width:44px; height:44px; flex-basis:44px; font-size:20px; }
+    .categoria-info strong{ font-size:16px; }
+
+    .modelos{ padding:18px; }
+    .modelos h2{ margin-bottom:16px; font-size:24px; }
+    .modelo{ padding:10px; gap:12px; align-items:center; }
+    .modelo:hover{ transform:none; }
+    .modelo img{ width:72px; height:72px; }
+    .modelo-info strong{ font-size:17px; }
+
+    .detalle-producto{ padding:18px; }
+    .detalle-imagen img{ height:auto; max-height:420px; }
+    .detalle-info .btn{ display:block; text-align:center; padding:15px 20px; }
+}
+
+@media (max-width:768px){
+
+    .hero{ padding-top:140px; padding-bottom:50px; }
+    .hero-texto h1{ font-size:clamp(30px, 9vw, 42px); line-height:1.05; }
+    .hero-texto p{ font-size:17px; line-height:27px; margin-bottom:26px; }
+    .hero-acciones{ flex-direction:column; align-items:stretch; }
+    .hero-acciones .btn, .hero-acciones .btn-secundario{ text-align:center; }
+    .hero-datos span{ font-size:13px; padding:8px 12px; }
+
+    .seccion-encabezado h2{ font-size:26px; }
+    .nosotros-texto h2{ font-size:28px; }
+    .nosotros-texto p{ font-size:16px; line-height:28px; }
+    .nosotros-contenedor{ gap:28px; }
+    .nosotros-imagen, .nosotros-imagen img{ min-height:260px; }
+
+    .detalle-info h2{ font-size:26px; }
+    .detalle-precio{ font-size:24px; }
+
+    .galeria-realizados{ margin:24px auto; }
+    .imagen-principal{ height:auto; aspect-ratio:4 / 3; }
+
+    /* Llamado a cotizar */
+    .proyecto-personalizado{ margin:40px auto; padding:0 4px; }
+    .cta-personalizado{ padding:20px 16px; align-items:center; }
+    .cta-superior{ flex-direction:column; align-items:center; gap:14px; text-align:center; margin-bottom:18px; }
+    .cta-texto p{ text-align:center; margin:auto; }
+    .cta-btn{ display:block; width:100%; text-align:center; margin-top:0; align-self:stretch; }
+    .cta-pasos{ gap:14px; }
+
+    /* Sala de videos: que los campos no se salgan de la pantalla */
+    .hm-video-controls{ flex-wrap:wrap; }
+    .hm-video-controls input{ width:100%; min-width:0; }
+    .hm-video-player iframe{ max-width:100%; }
+
+    /* Pie de página */
+    .footer{ padding-top:44px; padding-bottom:44px; }
+    .footer-contenedor{ flex-direction:column; align-items:flex-start; gap:28px; }
+    .footer-logo h2{ font-size:26px; }
+}
+
+@media (max-width:420px){
+    .logo{ font-size:20px; }
+    .categoria{ min-width:170px; }
+}
