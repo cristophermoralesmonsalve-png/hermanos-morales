@@ -1076,3 +1076,18 @@ align-self:flex-start;
     }
 
 }
+/* Sala de videos: estilos independientes del catálogo */
+.hm-videos { padding: 64px 20px; background: #ede4d7; }
+.hm-video-card { max-width: 960px; margin: auto; padding: clamp(20px,4vw,40px); background: #fffaf3; border: 1px solid #d8c8b3; border-radius: 20px; }
+.hm-video-card h2 { font-size: clamp(26px,4vw,36px); color: #503721; margin-bottom: 12px; }
+.hm-video-card p { line-height: 1.6; margin: 12px 0; }
+.hm-video-card label { display: block; margin: 24px 0 8px; font-weight: bold; }
+.hm-video-controls { display: flex; flex-wrap: wrap; gap: 10px; }
+.hm-video-controls input { flex: 1 1 280px; min-width: 0; width: 100%; padding: 14px; border: 1px solid #a7927b; border-radius: 8px; font: inherit; }
+.hm-video-controls button { padding: 14px 18px; border-radius: 8px; background: #503721; color: white; cursor: pointer; }
+.hm-video-controls button[type="button"] { background: #e6d8c6; color: #382719; }
+.hm-video-controls :focus-visible { outline: 3px solid #ac671c; outline-offset: 3px; }
+.hm-video-player { aspect-ratio: 16/9; background: #171717; border-radius: 12px; overflow: hidden; margin-top: 20px; }
+.hm-video-player[hidden] { display: none; }
+.hm-video-player iframe { display: block; width: 100%; height: 100%; border: 0; }
+.hm-video-help, #hm-video-status { font-size: 14px; color: #655442; }
