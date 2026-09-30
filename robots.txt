@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hermanos-morales.vercel.app/sitemap.xml
