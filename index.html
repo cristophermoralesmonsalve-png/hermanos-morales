@@ -45,11 +45,10 @@
 
         <ul class="menu">
             <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#nosotros">Nosotros</a></li>
             <li><a href="#catalogo">Catálogo</a></li>
             <li><a href="#galeria">Galería</a></li>
-            <li hidden><a href="#clientes">Clientes</a></li>
             <li><a href="#envios">Envíos</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
             <li><a href="#contacto">Contacto</a></li>
             <li>
                 <a href="https://wa.me/56966060170?text=Hola%2C%20quiero%20cotizar%20un%20mueble" class="btn-oferta" target="_blank" rel="noopener">
@@ -86,28 +85,6 @@
     </header>
 
     <main>
-        <section class="nosotros" id="nosotros">
-            <div class="nosotros-contenedor">
-                <div class="nosotros-imagen">
-                    <img src="img/prelogo.jpg" alt="Mueble de madera fabricado por Hermanos Morales">
-                </div>
-
-                <div class="nosotros-texto">
-                    <span>Nosotros</span>
-                    <h2>Un oficio heredado, trabajado con paciencia y buena madera</h2>
-
-                    <p>
-                        En Hermanos Morales cada mueble nace de un oficio familiar: medir, cortar,
-                        lijar, ensamblar y terminar cada pieza con cuidado. Fabricamos muebles
-                        pensados para durar, adaptados al espacio de cada cliente y con ese carácter
-                        único que solo tiene el trabajo hecho a mano.
-                    </p>
-
-                    <a href="#catalogo" class="btn">Ver modelos</a>
-                </div>
-            </div>
-        </section>
-
         <section class="catalogo" id="catalogo">
             <div class="seccion-encabezado">
                 <span>Catálogo</span>
@@ -135,7 +112,7 @@
                         </span>
 
                         <span class="categoria-info">
-                            <strong>Bancas y asientos</strong>
+                            <strong>Bancas</strong>
                             <small>Diferentes estilos</small>
                         </span>
                     </button>
@@ -192,6 +169,8 @@
                             Fabricada en madera de alta calidad. Ideal para terrazas, jardines,
                             quinchos y espacios interiores.
                         </p>
+
+                        <dl class="detalle-medidas" hidden></dl>
 
                         <strong class="detalle-precio" hidden></strong>
 
@@ -293,14 +272,6 @@
 </div>
         </section>
 
-        <section class="clientes" id="clientes" hidden>
-            <div class="seccion-encabezado">
-                <span>Clientes</span>
-                <h2>Nuestros muebles, ya en sus hogares</h2>
-            </div>
-            <div class="clientes-grid"></div>
-        </section>
-
         <section class="envios" id="envios">
             <div class="seccion-encabezado">
                 <span>Entregas y envíos</span>
@@ -347,6 +318,32 @@
                 <a href="https://wa.me/56966060170?text=Hola%2C%20quiero%20consultar%20por%20un%20pedido" class="btn" target="_blank" rel="noopener">
                     Consultar mi pedido por WhatsApp
                 </a>
+            </div>
+        </section>
+
+        <section class="confianza" id="nosotros">
+            <div class="confianza-caja">
+                <article class="confianza-nosotros">
+                    <div class="confianza-foto">
+                        <img src="img/prelogo.jpg" alt="Mueble de madera fabricado por Hermanos Morales">
+                    </div>
+
+                    <div class="confianza-texto">
+                        <h2>Un oficio heredado, trabajado con paciencia</h2>
+                        <p>
+                            En Hermanos Morales cada mueble nace de un oficio familiar: medir, cortar,
+                            lijar, ensamblar y terminar cada pieza con cuidado. Fabricamos muebles
+                            pensados para durar y adaptados al espacio de cada cliente.
+                        </p>
+                        <a href="#catalogo" class="btn">Ver modelos</a>
+                    </div>
+                </article>
+
+                <aside class="confianza-reco" id="recomendaciones" aria-label="Recomendaciones de clientes" hidden>
+                    <h2>Lo que dicen nuestros clientes</h2>
+                    <p>Mensajes y fotos que nos envían por WhatsApp.</p>
+                    <div class="reco-tira"></div>
+                </aside>
             </div>
         </section>
     </main>

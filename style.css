@@ -1337,7 +1337,7 @@ VISOR DE FOTOS (flechas, cerrar, contador)
 ======================================*/
 
 .lightbox{ background:rgba(0,0,0,.9); }
-.lightbox img{ max-width:92%; max-height:84%; object-fit:contain; }
+.lightbox img{ max-width:97%; max-height:93%; object-fit:contain; }
 .lightbox .cerrar{
     position:absolute;
     top:10px;
@@ -1371,7 +1371,8 @@ VISOR DE FOTOS (flechas, cerrar, contador)
 .lb-next{ right:14px; }
 .lb-contador{
     position:absolute;
-    bottom:16px;
+    top:18px;
+    text-shadow:0 1px 4px #000;
     left:50%;
     transform:translateX(-50%);
     color:#ddd;
@@ -1379,29 +1380,103 @@ VISOR DE FOTOS (flechas, cerrar, contador)
 }
 
 /*======================================
-CLIENTES (fotos y capturas)
+NOSOTROS + RECOMENDACIONES (recuadro compartido)
 ======================================*/
 
-.clientes{
+.confianza{
     padding:64px 6%;
-    background:linear-gradient(180deg, #f3eee5 0%, #fffaf0 100%);
+    background:linear-gradient(180deg, #fffaf0 0%, #f3eee5 100%);
 }
-.clientes-grid{
+.confianza-caja{
     max-width:1200px;
     margin:auto;
-    columns:3 220px;
-    column-gap:14px;
-}
-.cliente{
-    margin-bottom:14px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
     overflow:hidden;
-    break-inside:avoid;
-    border-radius:14px;
+    border:1px solid #eadfc8;
+    border-radius:16px;
     background:#fffdf8;
-    box-shadow:0 10px 24px rgba(0,0,0,.09);
+    box-shadow:0 18px 40px rgba(0,0,0,.10);
 }
-.cliente img{ display:block; width:100%; height:auto; cursor:zoom-in; }
-.cliente figcaption{ padding:10px 14px; color:#5c5144; font-size:14px; line-height:21px; }
+.confianza-caja.sin-reco{
+    max-width:640px;
+    grid-template-columns:1fr;
+}
+
+.confianza-nosotros{ display:flex; flex-direction:column; }
+.confianza-foto{ position:relative; height:190px; overflow:hidden; }
+.confianza-foto img{ width:100%; height:100%; max-width:none; object-fit:cover; }
+.confianza-foto::after{
+    content:"Hecho a mano";
+    position:absolute;
+    left:18px;
+    bottom:16px;
+    padding:8px 14px;
+    color:#111;
+    border-radius:999px;
+    background:#d8a545;
+    font-size:14px;
+    font-weight:bold;
+}
+.confianza-texto{ padding:24px 26px 28px; }
+.confianza-texto h2{ margin-bottom:12px; color:#191919; font-size:26px; line-height:1.15; }
+.confianza-texto p{ margin-bottom:20px; color:#5c5144; font-size:16px; line-height:26px; }
+
+.confianza-reco{
+    min-width:0;
+    padding:24px 26px 28px;
+    border-left:1px solid #eadfc8;
+    background:#fbf3e2;
+}
+.confianza-reco[hidden]{ display:none; }
+.confianza-reco h2{ margin-bottom:6px; color:#191919; font-size:22px; line-height:1.2; }
+.confianza-reco > p{ margin-bottom:16px; color:#5c5144; font-size:15px; line-height:22px; }
+
+.reco-tira{
+    display:flex;
+    gap:12px;
+    padding-bottom:10px;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+}
+.reco{
+    flex:0 0 190px;
+    scroll-snap-align:start;
+    overflow:hidden;
+    border-radius:12px;
+    background:#fffdf8;
+    box-shadow:0 8px 20px rgba(0,0,0,.10);
+}
+.reco img{ width:100%; height:300px; max-width:none; object-fit:cover; object-position:top; cursor:zoom-in; }
+.reco figcaption{ padding:8px 12px; color:#5c5144; font-size:13px; line-height:19px; }
+
+@media (max-width:900px){
+    .confianza{ padding:44px 6%; }
+    .confianza-caja{ grid-template-columns:1fr; }
+    .confianza-reco{ border-left:0; border-top:1px solid #eadfc8; }
+    .reco{ flex-basis:160px; }
+    .reco img{ height:260px; }
+}
+
+/*======================================
+MEDIDAS DEL PRODUCTO
+======================================*/
+
+.detalle-medidas{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(120px, 1fr));
+    gap:8px;
+    margin:0 0 18px;
+}
+.detalle-medidas[hidden]{ display:none; }
+.detalle-medidas div{
+    padding:8px 12px;
+    border:1px solid #eadfc8;
+    border-radius:10px;
+    background:#fffaf0;
+}
+.detalle-medidas dt{ margin-bottom:2px; color:#8a7a63; font-size:12px; }
+.detalle-medidas dd{ margin:0; color:#222; font-size:16px; font-weight:bold; }
 
 /*======================================
 ENTREGAS Y ENVÍOS
@@ -1475,8 +1550,7 @@ CELULAR: "Cotizar" siempre visible en la barra superior
 }
 
 @media (max-width:768px){
-    .clientes, .envios{ padding-top:44px; padding-bottom:44px; }
-    .clientes-grid{ columns:2 140px; column-gap:10px; }
+    .envios{ padding-top:44px; padding-bottom:44px; }
     .lb-flecha{ width:40px; height:40px; }
     .lb-prev{ left:8px; }
     .lb-next{ right:8px; }
