@@ -1330,3 +1330,154 @@ BOTÓN FLOTANTE DE WHATSAPP
 @media (max-width:768px){
     .wa-flotante{ width:50px; height:50px; font-size:27px; }
 }
+
+
+/*======================================
+VISOR DE FOTOS (flechas, cerrar, contador)
+======================================*/
+
+.lightbox{ background:rgba(0,0,0,.9); }
+.lightbox img{ max-width:92%; max-height:84%; object-fit:contain; }
+.lightbox .cerrar{
+    position:absolute;
+    top:10px;
+    right:18px;
+    z-index:2;
+    color:#fff;
+    font-size:42px;
+    line-height:1;
+    cursor:pointer;
+}
+.lb-flecha{
+    position:absolute;
+    top:50%;
+    z-index:2;
+    width:46px;
+    height:46px;
+    transform:translateY(-50%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    border:0;
+    border-radius:50%;
+    background:rgba(255,255,255,.16);
+    font-size:20px;
+    cursor:pointer;
+}
+.lb-flecha:hover{ background:rgba(255,255,255,.3); }
+.lb-flecha[hidden]{ display:none; }
+.lb-prev{ left:14px; }
+.lb-next{ right:14px; }
+.lb-contador{
+    position:absolute;
+    bottom:16px;
+    left:50%;
+    transform:translateX(-50%);
+    color:#ddd;
+    font-size:14px;
+}
+
+/*======================================
+CLIENTES (fotos y capturas)
+======================================*/
+
+.clientes{
+    padding:64px 6%;
+    background:linear-gradient(180deg, #f3eee5 0%, #fffaf0 100%);
+}
+.clientes-grid{
+    max-width:1200px;
+    margin:auto;
+    columns:3 220px;
+    column-gap:14px;
+}
+.cliente{
+    margin-bottom:14px;
+    overflow:hidden;
+    break-inside:avoid;
+    border-radius:14px;
+    background:#fffdf8;
+    box-shadow:0 10px 24px rgba(0,0,0,.09);
+}
+.cliente img{ display:block; width:100%; height:auto; cursor:zoom-in; }
+.cliente figcaption{ padding:10px 14px; color:#5c5144; font-size:14px; line-height:21px; }
+
+/*======================================
+ENTREGAS Y ENVÍOS
+======================================*/
+
+.envios{ padding:64px 6%; background:#fffaf0; }
+.envios-lista{ max-width:760px; margin:auto; }
+.envios details{
+    margin-bottom:10px;
+    border:1px solid #eadfc8;
+    border-radius:12px;
+    background:#fffdf8;
+}
+.envios summary{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    padding:15px 18px;
+    font-size:16px;
+    font-weight:bold;
+    color:#222;
+    list-style:none;
+    cursor:pointer;
+}
+.envios summary::-webkit-details-marker{ display:none; }
+.envios summary::after{ content:"+"; color:#d8a545; font-size:22px; line-height:1; }
+.envios details[open] summary::after{ content:"–"; }
+.envios details p{ padding:0 18px 16px; color:#5c5144; font-size:15px; line-height:25px; }
+.envios-cta{ margin-top:22px; text-align:center; }
+
+/*======================================
+SALA DE VIDEOS OCULTA
+======================================*/
+
+.hm-videos[hidden]{ display:none; }
+.footer{ position:relative; }
+.hm-secreto{
+    position:absolute;
+    right:14px;
+    bottom:10px;
+    color:#fff;
+    border:0;
+    background:none;
+    font-size:15px;
+    opacity:.15;
+    cursor:pointer;
+}
+.hm-secreto:hover, .hm-secreto:focus-visible{ opacity:.6; }
+
+/*======================================
+ESCRITORIO: vista equivalente a un zoom del 75 %
+======================================*/
+
+@media (min-width:993px){
+    html{ zoom:.75; }
+    .hero{ min-height:700px; }
+}
+
+/*======================================
+CELULAR: "Cotizar" siempre visible en la barra superior
+======================================*/
+
+@media (max-width:992px){
+    .menu li:last-child{
+        position:sticky;
+        right:0;
+        padding-left:14px;
+        background:linear-gradient(90deg, rgba(17,17,17,0), #111 14px);
+    }
+}
+
+@media (max-width:768px){
+    .clientes, .envios{ padding-top:44px; padding-bottom:44px; }
+    .clientes-grid{ columns:2 140px; column-gap:10px; }
+    .lb-flecha{ width:40px; height:40px; }
+    .lb-prev{ left:8px; }
+    .lb-next{ right:8px; }
+}

@@ -29,6 +29,12 @@
     <meta name="twitter:description" content="Fabricamos muebles de madera a medida para tu hogar. Bancas, porta maceteros, organizadores y mucho más.">
     <meta name="twitter:image" content="https://hermanos-morales.vercel.app/img/portadaf.png">
 
+    <link rel="canonical" href="https://hermanos-morales.vercel.app/">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🪑</text></svg>">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"FurnitureStore","name":"Hermanos Morales","description":"Fabricación de muebles de madera a medida: bancas, sillones, juegos de jardín y más.","url":"https://hermanos-morales.vercel.app/","image":"https://hermanos-morales.vercel.app/img/portadaf.png","telephone":"+56966060170","areaServed":{"@type":"Country","name":"Chile"}}
+    </script>
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
@@ -42,10 +48,11 @@
             <li><a href="#nosotros">Nosotros</a></li>
             <li><a href="#catalogo">Catálogo</a></li>
             <li><a href="#galeria">Galería</a></li>
-            <li><a href="#videos">Videos</a></li>
+            <li hidden><a href="#clientes">Clientes</a></li>
+            <li><a href="#envios">Envíos</a></li>
             <li><a href="#contacto">Contacto</a></li>
             <li>
-                <a href="https://wa.me/56966060170" class="btn-oferta" target="_blank" rel="noopener">
+                <a href="https://wa.me/56966060170?text=Hola%2C%20quiero%20cotizar%20un%20mueble" class="btn-oferta" target="_blank" rel="noopener">
                     Cotizar
                 </a>
             </li>
@@ -285,9 +292,66 @@
 </section>
 </div>
         </section>
+
+        <section class="clientes" id="clientes" hidden>
+            <div class="seccion-encabezado">
+                <span>Clientes</span>
+                <h2>Nuestros muebles, ya en sus hogares</h2>
+            </div>
+            <div class="clientes-grid"></div>
+        </section>
+
+        <section class="envios" id="envios">
+            <div class="seccion-encabezado">
+                <span>Entregas y envíos</span>
+                <h2>Cómo funciona tu pedido</h2>
+            </div>
+
+            <div class="envios-lista">
+                <details open>
+                    <summary>¿Cuánto demora mi mueble?</summary>
+                    <p>
+                        Todos nuestros muebles se fabrican al momento. La fecha estimada de entrega
+                        te la damos cuando consultas, según tu pedido. El proceso de barnizado
+                        puede tomar tiempo adicional.
+                    </p>
+                </details>
+
+                <details>
+                    <summary>¿Cómo recibo mi pedido?</summary>
+                    <p>
+                        Los sillones y muebles grandes se entregan de forma personal, o puedes
+                        coordinar el retiro. Los muebles más pequeños se envían por encomienda y,
+                        en lo posible, llegan el mismo día en que se retiran.
+                    </p>
+                </details>
+
+                <details>
+                    <summary>¿Cuánto cuesta el envío?</summary>
+                    <p>
+                        Depende de la cercanía al taller y del tamaño del mueble. Te lo informamos
+                        junto con la cotización.
+                    </p>
+                </details>
+
+                <details>
+                    <summary>¿Puedo pedir otras medidas o colores?</summary>
+                    <p>
+                        Sí. Trabajamos a medida, con distintos colores y terminaciones. Cuéntanos
+                        tu idea o envíanos una foto de referencia.
+                    </p>
+                </details>
+            </div>
+
+            <div class="envios-cta">
+                <a href="https://wa.me/56966060170?text=Hola%2C%20quiero%20consultar%20por%20un%20pedido" class="btn" target="_blank" rel="noopener">
+                    Consultar mi pedido por WhatsApp
+                </a>
+            </div>
+        </section>
     </main>
 
-    <section id="videos" class="hm-videos" aria-labelledby="hm-video-title">
+    <section id="videos" class="hm-videos" hidden aria-labelledby="hm-video-title">
         <div class="hm-video-card">
             <h2 id="hm-video-title">Sala de videos</h2>
             <p>Pega un enlace de YouTube y reproduce el video aquí.</p>
@@ -325,7 +389,7 @@
 
                 <p>
                     <i class="fa-brands fa-whatsapp"></i>
-                    <a href="https://wa.me/56966060170" target="_blank" rel="noopener">
+                    <a href="https://wa.me/56966060170?text=Hola%2C%20quiero%20cotizar%20un%20mueble" target="_blank" rel="noopener">
                         +56 9 6606 0170
                     </a>
                 </p>
@@ -334,6 +398,10 @@
 
     
         
+    
+        <button type="button" id="hm-abrir-videos" class="hm-secreto" aria-label="Abrir sala de videos">
+            <i class="fa-regular fa-circle-play"></i>
+        </button>
     </footer>
 
     
@@ -341,9 +409,12 @@
         <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
     </a>
 
-    <div id="lightbox" class="lightbox">
-        <span class="cerrar">&times;</span>
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Vista ampliada de la foto">
+        <span class="cerrar" role="button" aria-label="Cerrar">&times;</span>
+        <button class="lb-flecha lb-prev" type="button" aria-label="Foto anterior">&#10094;</button>
         <img id="lightbox-img" src="" alt="">
+        <button class="lb-flecha lb-next" type="button" aria-label="Foto siguiente">&#10095;</button>
+        <span class="lb-contador"></span>
     </div>
 <script src="script.js"></script>
 
