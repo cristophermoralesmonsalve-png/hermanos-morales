@@ -12,6 +12,8 @@ const detalleCategoria = document.querySelector(".detalle-categoria");
 const detalleTitulo = document.querySelector(".detalle-info h2");
 const detalleDescripcion = document.querySelector(".detalle-info p");
 const detallePrecio = document.querySelector(".detalle-precio");
+const detalleWhats = document.querySelector(".detalle-info .btn");
+const WA = "56966060170";
 
 const beneficios = [
     "Fabricación a medida",
@@ -41,7 +43,7 @@ const catalogo = {
             { titulo: "Sillón natural",       detalle: "Madera de pino",  precio: "$50.000", imagen: "img/sofas/sofa1-7.jpg" },
             { titulo: "Sillón barniz marino", detalle: "Tono natural",    precio: "$50.000", imagen: "img/sofas/sofa1-6.jpg" },
             { titulo: "Sillón nogal",         detalle: "Acabado natural", precio: "$50.000", imagen: "img/sofas/sofa1-8.jpg" },
-            { titulo: "Trabajos realizados",  detalle: "Diseño moderno",  precio: "$50.000", imagen: "img/sofas/sofa1-1.jpg" }
+            { titulo: "Sillón diseño moderno", detalle: "Diseño moderno",  precio: "$50.000", imagen: "img/sofas/sofa1-1.jpg" }
             // ← agrega aquí más sillones
         ]
     },
@@ -102,6 +104,20 @@ const catalogo = {
         ]
     }
 };
+
+// ======================================================================
+// CLIENTES — AQUÍ SE AGREGAN LAS FOTOS Y CAPTURAS QUE TE ENVÍAN
+//
+// Guarda las imágenes en la carpeta img/clientes/ y agrega una línea por
+// cada foto o captura (respeta las comas). "texto" es opcional: puede ser
+// una frase corta o quedar vacío (texto: "").
+// Mientras esta lista esté vacía, la sección Clientes no se muestra.
+// ======================================================================
+
+const clientes = [
+    // { imagen: "img/clientes/cliente1.jpg",  texto: "Banca triple nogal" },
+    // { imagen: "img/clientes/captura1.jpg",  texto: "Comentario de un cliente por WhatsApp" },
+];
 
 window.addEventListener("scroll", () => {
     navbar.classList.toggle("scrolled", window.scrollY > 50);
@@ -165,13 +181,11 @@ function seleccionarModelo(categoriaId, modeloIndex) {
     });
 
     detalleImagen.src = modelo.imagen;
-    detalleImagen.onclick = () => {
-
-    lightbox.classList.add("activo");
-    lightboxImg.src = modelo.imagen;
-    lightboxImg.alt = modelo.titulo;
-
-};
+    detalleImagen.onclick = () => abrirLightbox(
+        categoria.modelos.map((x) => ({ src: x.imagen, alt: x.titulo })),
+        modeloIndex
+    );
+    detalleWhats.href = `https://wa.me/${WA}?text=${encodeURIComponent("Hola, quiero cotizar: " + modelo.titulo)}`;
     detalleImagen.alt = modelo.titulo;
     detalleCategoria.textContent = categoria.nombre;
     detalleTitulo.textContent = modelo.titulo;
@@ -195,28 +209,74 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
+const lbPrev = lightbox.querySelector(".lb-prev");
+const lbNext = lightbox.querySelector(".lb-next");
+const lbContador = lightbox.querySelector(".lb-contador");
 const imagenGrande = document.getElementById("imagenGrande");
 
-imagenGrande.addEventListener("click", () => {
+let lbLista = [];
+let lbIndice = 0;
 
+function mostrarLightbox() {
+    const foto = lbLista[lbIndice];
+    const varias = lbLista.length > 1;
+
+    lightboxImg.src = foto.src;
+    lightboxImg.alt = foto.alt || "";
+    lbPrev.hidden = !varias;
+    lbNext.hidden = !varias;
+    lbContador.textContent = varias ? `${lbIndice + 1} / ${lbLista.length}` : "";
+}
+
+function abrirLightbox(lista, indice = 0) {
+    lbLista = lista;
+    lbIndice = indice;
+    mostrarLightbox();
     lightbox.classList.add("activo");
-    lightboxImg.src = imagenGrande.src;
-    lightboxImg.alt = imagenGrande.alt;
+    document.body.style.overflow = "hidden";
+}
 
+function cerrarLightbox() {
+    lightbox.classList.remove("activo");
+    document.body.style.overflow = "";
+}
+
+function moverLightbox(paso) {
+    lbIndice = (lbIndice + paso + lbLista.length) % lbLista.length;
+    mostrarLightbox();
+}
+
+lbPrev.addEventListener("click", (e) => { e.stopPropagation(); moverLightbox(-1); });
+lbNext.addEventListener("click", (e) => { e.stopPropagation(); moverLightbox(1); });
+
+lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox || e.target.classList.contains("cerrar")) {
+        cerrarLightbox();
+    }
 });
 
-document.addEventListener("click", (e) => {
+document.addEventListener("keydown", (e) => {
+    if (!lightbox.classList.contains("activo")) return;
+    if (e.key === "Escape") cerrarLightbox();
+    if (e.key === "ArrowLeft" && lbLista.length > 1) moverLightbox(-1);
+    if (e.key === "ArrowRight" && lbLista.length > 1) moverLightbox(1);
+});
 
-    if (
-        e.target === lightbox ||
-        e.target === lightboxImg ||
-        e.target.classList.contains("cerrar")
-    ) {
+// Deslizar el dedo para cambiar de foto
+let toqueX = null;
+lightbox.addEventListener("touchstart", (e) => { toqueX = e.touches[0].clientX; }, { passive: true });
+lightbox.addEventListener("touchend", (e) => {
+    if (toqueX === null) return;
+    const dx = e.changedTouches[0].clientX - toqueX;
+    toqueX = null;
+    if (Math.abs(dx) > 50 && lbLista.length > 1) moverLightbox(dx < 0 ? 1 : -1);
+});
 
-        lightbox.classList.remove("activo");
-
-    }
-
+// Foto grande de la galería: abre el visor con todas las miniaturas
+imagenGrande.addEventListener("click", () => {
+    const miniaturas = [...document.querySelectorAll(".thumb")];
+    const activa = Math.max(0, miniaturas.findIndex((t) => t.classList.contains("activa")));
+    abrirLightbox(miniaturas.map((t) => ({ src: t.src, alt: t.alt })), activa);
 });
 
 function cambiarImagen(imagen){
@@ -228,6 +288,7 @@ function cambiarImagen(imagen){
 
     setTimeout(() => {
         grande.src = imagen.src;
+        grande.alt = imagen.alt;
         grande.style.opacity = "1";
     }, 180);
 
@@ -311,4 +372,50 @@ document.addEventListener("error", (e) => {
         vaciar();
         estado.textContent = ayuda;
     });
+})();
+
+
+// ---------- Clientes (fotos y capturas) ----------
+(function seccionClientes() {
+    const seccion = document.getElementById("clientes");
+    const grid = document.querySelector(".clientes-grid");
+    const enlace = document.querySelector('.menu a[href="#clientes"]');
+    if (!seccion || !grid) return;
+
+    const hay = clientes.length > 0;
+    seccion.hidden = !hay;
+    if (enlace) enlace.parentElement.hidden = !hay;
+    if (!hay) return;
+
+    const lista = clientes.map((c) => ({ src: c.imagen, alt: c.texto || "Mueble entregado a un cliente" }));
+
+    grid.innerHTML = clientes.map((c, i) => `
+        <figure class="cliente">
+            <img src="${c.imagen}" alt="${lista[i].alt}" loading="lazy" data-i="${i}">
+            ${c.texto ? `<figcaption>${c.texto}</figcaption>` : ""}
+        </figure>`).join("");
+
+    grid.querySelectorAll("img").forEach((img) =>
+        img.addEventListener("click", () => abrirLightbox(lista, Number(img.dataset.i))));
+})();
+
+// ---------- Sala de videos oculta ----------
+// Se abre con el ícono discreto del pie de página o con el enlace  tusitio/#videos
+(function salaOculta() {
+    const sala = document.getElementById("videos");
+    const boton = document.getElementById("hm-abrir-videos");
+    if (!sala) return;
+
+    function abrir() {
+        sala.hidden = false;
+        sala.scrollIntoView({ behavior: "smooth" });
+    }
+
+    if (boton) {
+        boton.addEventListener("click", () => {
+            if (sala.hidden) abrir(); else sala.hidden = true;
+        });
+    }
+    if (location.hash === "#videos") abrir();
+    window.addEventListener("hashchange", () => { if (location.hash === "#videos") abrir(); });
 })();
