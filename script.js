@@ -12,6 +12,7 @@ const detalleCategoria = document.querySelector(".detalle-categoria");
 const detalleTitulo = document.querySelector(".detalle-info h2");
 const detalleDescripcion = document.querySelector(".detalle-info p");
 const detallePrecio = document.querySelector(".detalle-precio");
+const detalleMedidas = document.querySelector(".detalle-medidas");
 const detalleWhats = document.querySelector(".detalle-info .btn");
 const WA = "56966060170";
 
@@ -20,6 +21,22 @@ const beneficios = [
     "Diferentes colores y terminaciones",
     "Terminación premium",
     "Uso interior y exterior"
+];
+
+// Si el cliente lo pide sellado, el mueble queda a prueba de agua.
+// (No se muestra en la categoría Juegos.)
+const beneficioSellado = "Si lo pides sellado, queda a prueba de agua";
+
+// ======================================================================
+// MEDIDAS — se muestran en el detalle de cada producto
+// Formato: [ ["Nombre", "valor"], ["Nombre", "valor"] ]
+// Si la lista está vacía ( [] ) no se muestra nada.
+// ======================================================================
+const MEDIDAS_BANCA_DOBLE = [
+    ["Ancho", "120 cm"], ["Profundidad", "50 cm"], ["Alto total", "90 cm"], ["Alto del asiento", "45 cm"]
+];
+const MEDIDAS_BANCA_TRES = [
+    ["Ancho", "160 cm"], ["Profundidad", "50 cm"], ["Alto total", "90 cm"], ["Alto del asiento", "45 cm"]
 ];
 
 // ======================================================================
@@ -54,12 +71,12 @@ const catalogo = {
     bancas: {
         nombre: "Bancas y asientos",
         modelos: [
-            { titulo: "Banca doble natural",        detalle: "Madera de pino",  precio: "$70.000",  imagen: "img/bancas/banca1-1.jpg" },
-            { titulo: "Banca doble barniz marino",  detalle: "Tono natural",    precio: "$70.000",  imagen: "img/bancas/banca1-2.jpg" },
-            { titulo: "Banca doble nogal",          detalle: "Acabado natural", precio: "$70.000",  imagen: "img/bancas/banca1-3.jpg" },
-            { titulo: "Banca triple natural",       detalle: "Madera de pino",  precio: "$100.000", imagen: "img/bancas/banca2-2.jpg" },
-            { titulo: "Banca triple barniz marino", detalle: "Tono natural",    precio: "$100.000", imagen: "img/bancas/banca2-3.jpg" },
-            { titulo: "Banca triple nogal",         detalle: "Acabado natural", precio: "$100.000", imagen: "img/bancas/banca2-4.jpg" }
+            { titulo: "Banca doble natural", medidas: MEDIDAS_BANCA_DOBLE,        detalle: "Madera de pino",  precio: "$70.000",  imagen: "img/bancas/banca1-1.jpg" },
+            { titulo: "Banca doble barniz marino", medidas: MEDIDAS_BANCA_DOBLE,  detalle: "Tono natural",    precio: "$70.000",  imagen: "img/bancas/banca1-2.jpg" },
+            { titulo: "Banca doble nogal", medidas: MEDIDAS_BANCA_DOBLE,          detalle: "Acabado natural", precio: "$70.000",  imagen: "img/bancas/banca1-3.jpg" },
+            { titulo: "Banca tres cuerpos natural", medidas: MEDIDAS_BANCA_TRES,       detalle: "Madera de pino",  precio: "$100.000", imagen: "img/bancas/banca2-2.jpg" },
+            { titulo: "Banca tres cuerpos  barniz marino", medidas: MEDIDAS_BANCA_TRES, detalle: "Tono natural",    precio: "$100.000", imagen: "img/bancas/banca2-3.jpg" },
+            { titulo: "Banca tres cuerpos  nogal", medidas: MEDIDAS_BANCA_TRES,         detalle: "Acabado natural", precio: "$100.000", imagen: "img/bancas/banca2-4.jpg" }
             // ← agrega aquí más bancas
         ]
     },
@@ -70,7 +87,10 @@ const catalogo = {
     exterior: {
         nombre: "Jardín y exterior",
         modelos: [
-            { titulo: "Jardinera vertical de madera", detalle: "Ideal para plantas y decoración", precio: "$25.000", imagen: "img/jardinyexterior/jardinera1-1.jpg" }
+            // ▼▼ AQUÍ VAN LAS MEDIDAS DE LA JARDINERA (cuando las tengas) ▼▼
+            // Reemplaza  medidas: []  por, por ejemplo:
+            //   medidas: [["Ancho", "__ cm"], ["Alto", "__ cm"], ["Profundidad", "__ cm"]],
+            { titulo: "Jardinera vertical de madera", medidas: [], detalle: "Ideal para plantas y decoración", precio: "$25.000", imagen: "img/jardinyexterior/jardinera1-1.jpg" }
             // ← agrega aquí más productos de jardín
         ]
     },
@@ -81,7 +101,7 @@ const catalogo = {
     interior: {
         nombre: "Interior",
         modelos: [
-            { titulo: "Organizador porta llaves", detalle: "Decoración funcional para espacios interiores", precio: "$20.000", imagen: "img/ventas/Portallaves1-1.jpg.png" }
+            { titulo: "Organizador porta llaves", medidas: [["Ancho", "50 cm"], ["Alto", "60 cm"], ["Profundidad", "7 cm"]], detalle: "Decoración funcional para espacios interiores", precio: "$20.000", imagen: "img/ventas/Portallaves1-1.jpg.png" }
             // ← agrega aquí más productos de interior
         ]
     },
@@ -95,8 +115,8 @@ const catalogo = {
     juegos: {
         nombre: "Juegos",
         modelos: [
-            { titulo: "Cornhole",        detalle: "Juego de embocar bolsitas, ideal para patio y eventos", precio: "Consultar", imagen: "img/juegos/cornhole1.jpg" },
-            { titulo: "Yenga",           detalle: "Torre de bloques de madera, versión tamaño gigante",    precio: "Consultar", imagen: "img/juegos/yenga1.jpg" },
+            { titulo: "Cornhole", medidas: [["Tablero", "100 x 60 cm"], ["Incluye", "6 sacos para jugar"]],        detalle: "Juego de embocar bolsitas, ideal para patio y eventos", precio: "Consultar", imagen: "img/juegos/cornhole1.jpg" },
+            { titulo: "Yenga", medidas: [["Piezas", "52 de 20 cm aprox."], ["Altura inicial", "74 cm"], ["Altura final", "140 cm aprox."]],           detalle: "Torre de bloques de madera, versión tamaño gigante",    precio: "Consultar", imagen: "img/juegos/yenga1.jpg" },
             { titulo: "Croquet",         detalle: "Set clásico de croquet para el jardín",                 precio: "Consultar", imagen: "img/juegos/croquet1.jpg" },
             { titulo: "Pesca",           detalle: "Juego de pesca en madera para niños y adultos",         precio: "Consultar", imagen: "img/juegos/pesca1.jpg" },
             { titulo: "Laberinto",       detalle: "Juego de habilidad y paciencia en madera",              precio: "Consultar", imagen: "img/juegos/laberinto1.jpg" }
@@ -106,12 +126,13 @@ const catalogo = {
 };
 
 // ======================================================================
-// CLIENTES — AQUÍ SE AGREGAN LAS FOTOS Y CAPTURAS QUE TE ENVÍAN
+// RECOMENDACIONES — AQUÍ SE AGREGAN LAS FOTOS Y CAPTURAS DE WHATSAPP
+// (se muestran junto a "Nosotros", casi al final de la página)
 //
 // Guarda las imágenes en la carpeta img/clientes/ y agrega una línea por
 // cada foto o captura (respeta las comas). "texto" es opcional: puede ser
 // una frase corta o quedar vacío (texto: "").
-// Mientras esta lista esté vacía, la sección Clientes no se muestra.
+// Mientras esta lista esté vacía, el recuadro de recomendaciones no se muestra.
 // ======================================================================
 
 const clientes = [
@@ -193,13 +214,20 @@ function seleccionarModelo(categoriaId, modeloIndex) {
     detallePrecio.textContent = modelo.precio;
     detallePrecio.hidden = false;
 
-    actualizarBeneficios();
+    const medidas = modelo.medidas || [];
+    detalleMedidas.innerHTML = medidas
+        .map(([nombre, valor]) => `<div><dt>${nombre}</dt><dd>${valor}</dd></div>`)
+        .join("");
+    detalleMedidas.hidden = medidas.length === 0;
+
+    actualizarBeneficios(categoriaId !== "juegos");
 }
 
-function actualizarBeneficios() {
+function actualizarBeneficios(conSellado) {
     const lista = detalleProducto.querySelector("ul");
+    const items = conSellado ? [...beneficios, beneficioSellado] : beneficios;
 
-    lista.innerHTML = beneficios
+    lista.innerHTML = items
         .map((beneficio) => `<li>${beneficio}</li>`)
         .join("");
 }
@@ -375,27 +403,27 @@ document.addEventListener("error", (e) => {
 })();
 
 
-// ---------- Clientes (fotos y capturas) ----------
-(function seccionClientes() {
-    const seccion = document.getElementById("clientes");
-    const grid = document.querySelector(".clientes-grid");
-    const enlace = document.querySelector('.menu a[href="#clientes"]');
-    if (!seccion || !grid) return;
+// ---------- Recomendaciones (fotos y capturas de clientes) ----------
+(function recomendaciones() {
+    const caja = document.querySelector(".confianza-caja");
+    const panel = document.getElementById("recomendaciones");
+    const tira = document.querySelector(".reco-tira");
+    if (!caja || !panel || !tira) return;
 
     const hay = clientes.length > 0;
-    seccion.hidden = !hay;
-    if (enlace) enlace.parentElement.hidden = !hay;
+    panel.hidden = !hay;
+    caja.classList.toggle("sin-reco", !hay);
     if (!hay) return;
 
-    const lista = clientes.map((c) => ({ src: c.imagen, alt: c.texto || "Mueble entregado a un cliente" }));
+    const lista = clientes.map((c) => ({ src: c.imagen, alt: c.texto || "Recomendación de un cliente" }));
 
-    grid.innerHTML = clientes.map((c, i) => `
-        <figure class="cliente">
+    tira.innerHTML = clientes.map((c, i) => `
+        <figure class="reco">
             <img src="${c.imagen}" alt="${lista[i].alt}" loading="lazy" data-i="${i}">
             ${c.texto ? `<figcaption>${c.texto}</figcaption>` : ""}
         </figure>`).join("");
 
-    grid.querySelectorAll("img").forEach((img) =>
+    tira.querySelectorAll("img").forEach((img) =>
         img.addEventListener("click", () => abrirLightbox(lista, Number(img.dataset.i))));
 })();
 
