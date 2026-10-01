@@ -1561,15 +1561,23 @@ FOTOS COMPLETAS (sin recortes)
 Las fotos del catálogo son láminas con texto: se muestran enteras.
 ======================================*/
 
-.detalle-imagen{ background:#f3eee5; }
+.detalle-imagen{
+    display:flex;
+    justify-content:center;
+    background:#f3eee5;
+}
 .detalle-imagen img{
-    width:100%;
+    width:auto;
+    max-width:100%;
     height:auto;
-    max-height:none;
+    max-height:490px;   /* ← para más chica baja este número (ej. 500px), para más grande súbelo */
     object-fit:contain;
 }
 
 .modelo img{
     object-fit:contain;
     background:#f3eee5;
+}
+@media (max-width:768px){
+    .detalle-imagen img{ width:100%; max-height:320px; }
 }
