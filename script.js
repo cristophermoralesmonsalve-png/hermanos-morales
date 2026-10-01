@@ -115,8 +115,8 @@ const catalogo = {
     juegos: {
         nombre: "Juegos",
         modelos: [
-            { titulo: "Cornhole", medidas: [["Tablero", "100 x 60 cm"], ["Incluye", "6 sacos para jugar"]],        detalle: "Juego de embocar bolsitas, ideal para patio y eventos", precio: "Consultar", imagen: "img/juegos/cornhole1.jpg" },
-            { titulo: "Yenga", medidas: [["Piezas", "52 de 20 cm aprox."], ["Altura inicial", "74 cm"], ["Altura final", "140 cm aprox."]],           detalle: "Torre de bloques de madera, versión tamaño gigante",    precio: "Consultar", imagen: "img/juegos/yenga1.jpg" },
+            { titulo: "Cornhole", medidas: [["Tablero", "100 x 60 cm"], ["Incluye", "6 sacos para jugar"]],        detalle: "Juego de embocar bolsitas, ideal para patio y eventos", precio: "Consultar", imagen: "img/juegos/cornhole1.jpg",  },
+            { titulo: "Yenga", medidas: [["Piezas", "52 de 20 cm aprox."], ["Altura inicial", "74 cm"], ["Altura final", "140 cm aprox."]],           detalle: "Torre de bloques de madera, versión tamaño gigante",    precio: "Consultar", imagen: "img/juegos/yenga.png"},
             { titulo: "Croquet",         detalle: "Set clásico de croquet para el jardín",                 precio: "Consultar", imagen: "img/juegos/croquet1.jpg" },
             { titulo: "Pesca",           detalle: "Juego de pesca en madera para niños y adultos",         precio: "Consultar", imagen: "img/juegos/pesca1.jpg" },
             { titulo: "Laberinto",       detalle: "Juego de habilidad y paciencia en madera",              precio: "Consultar", imagen: "img/juegos/laberinto1.jpg" }
