@@ -96,7 +96,8 @@ const catalogo = {
             { titulo: "Cornhole",        detalle: "Juego de embocar bolsitas, ideal para patio y eventos", precio: "Consultar", imagen: "img/juegos/cornhole1.jpg" },
             { titulo: "Yenga",           detalle: "Torre de bloques de madera, versión tamaño gigante",    precio: "Consultar", imagen: "img/juegos/yenga1.jpg" },
             { titulo: "Croquet",         detalle: "Set clásico de croquet para el jardín",                 precio: "Consultar", imagen: "img/juegos/croquet1.jpg" },
-            { titulo: "Pesca laberinto", detalle: "Juego de habilidad y paciencia para niños y adultos",   precio: "Consultar", imagen: "img/juegos/pesca-laberinto1.jpg" }
+            { titulo: "Pesca",           detalle: "Juego de pesca en madera para niños y adultos",         precio: "Consultar", imagen: "img/juegos/pesca1.jpg" },
+            { titulo: "Laberinto",       detalle: "Juego de habilidad y paciencia en madera",              precio: "Consultar", imagen: "img/juegos/laberinto1.jpg" }
             // ← agrega aquí más juegos
         ]
     }
