@@ -1555,3 +1555,21 @@ CELULAR: "Cotizar" siempre visible en la barra superior
     .lb-prev{ left:8px; }
     .lb-next{ right:8px; }
 }
+
+/*======================================
+FOTOS COMPLETAS (sin recortes)
+Las fotos del catálogo son láminas con texto: se muestran enteras.
+======================================*/
+
+.detalle-imagen{ background:#f3eee5; }
+.detalle-imagen img{
+    width:100%;
+    height:auto;
+    max-height:none;
+    object-fit:contain;
+}
+
+.modelo img{
+    object-fit:contain;
+    background:#f3eee5;
+}
