@@ -115,11 +115,14 @@ const catalogo = {
     juegos: {
         nombre: "Juegos",
         modelos: [
-            { titulo: "Cornhole", medidas: [["Tablero", "100 x 60 cm"], ["Incluye", "6 sacos para jugar"]],        detalle: "Juego de embocar bolsitas, ideal para patio y eventos", precio: "Consultar", imagen: "img/juegos/cornhole1.jpg",  },
-            { titulo: "Yenga", medidas: [["Piezas", "52 de 20 cm aprox."], ["Altura inicial", "74 cm"], ["Altura final", "140 cm aprox."]],           detalle: "Torre de bloques de madera, versión tamaño gigante",    precio: "Consultar", imagen: "img/juegos/yenga.png"},
+            { titulo: "Cornhole", medidas: [["Tablero", "100 x 60 cm"], ["Incluye", "6 sacos para jugar"], ["Saco extra", "$1.000 c/u"]],        detalle: "Juego de embocar bolsitas, ideal para patio y eventos", precio: "$40.000", imagen: "img/juegos/cornhole1.jpg",  },
+            { titulo: "Yenga", medidas: [["Piezas", "52 de 20 cm aprox."], ["Altura inicial", "74 cm"], ["Altura final", "140 cm aprox."]],           detalle: "Torre de bloques de madera, versión tamaño gigante",    precio: "$40.000", imagen: "img/juegos/yenga.png"},
             { titulo: "Croquet",         detalle: "Set clásico de croquet para el jardín",                 precio: "Consultar", imagen: "img/juegos/croquet1.jpg" },
             { titulo: "Pesca",           detalle: "Juego de pesca en madera para niños y adultos",         precio: "Consultar", imagen: "img/juegos/pesca1.jpg" },
-            { titulo: "Laberinto",       detalle: "Juego de habilidad y paciencia en madera",              precio: "Consultar", imagen: "img/juegos/laberinto1.jpg" }
+            { titulo: "Laberinto",       detalle: "Juego de habilidad y paciencia en madera",              precio: "$40.000", imagen: "img/juegos/laberinto1.jpg" },
+            // La foto del laberinto doble se guarda en: img/juegos/laberinto2.png
+            // (mientras no exista, el sitio muestra el logo en su lugar)
+            { titulo: "Laberinto doble", detalle: "Laberinto de doble tablero, para jugar de a dos",       precio: "$70.000", imagen: "img/juegos/laberinto2.png" }
             // ← agrega aquí más juegos
         ]
     }
