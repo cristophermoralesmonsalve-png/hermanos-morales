@@ -127,25 +127,45 @@ const catalogo = {
     },
 
     // ==================================================================
-    // JUEGOS  ·  fotos en: img/juegos/
-    // Guarda cada foto con el nombre indicado (o cambia la ruta).
-    // Más fotos del mismo juego: copia la línea, ponle otro título
-    // (ej. "Cornhole - modelo 2") y otra imagen (cornhole2.jpg).
+    // JUEGOS  ·  una carpeta por juego dentro de img/juegos/
+    //
+    // FOTOS DESLIZABLES: cada juego usa  fotos: "img/juegos/<juego>/<juego>1-"
+    // El sitio busca solo  <juego>1-1.jpg, <juego>1-2.jpg, <juego>1-3.jpg ...
+    // (numeradas seguidas, sin saltos) y las muestra para deslizar.
+    // Para agregar otra foto, solo guárdala con el siguiente número. No hay que tocar este archivo.
     // ==================================================================
     juegos: {
         nombre: "Juegos",
         modelos: [
-            { titulo: "Cornhole", medidas: [["Tablero", "100 x 60 cm"], ["Incluye", "6 sacos para jugar"], ["Saco extra", "$1.000 c/u"]],        detalle: "Juego de embocar bolsitas, ideal para patio y eventos", precio: "$40.000", imagen: "img/juegos/cornhole1.jpg",  },
-            { titulo: "Yenga", medidas: [["Piezas", "52 de 20 cm aprox."], ["Altura inicial", "74 cm"], ["Altura final", "140 cm aprox."]],           detalle: "Torre de bloques de madera, versión tamaño gigante",    precio: "$40.000", imagen: "img/juegos/yenga.png"},
+            { titulo: "Cornhole", medidas: [["Tablero", "100 x 60 cm"], ["Incluye", "6 sacos para jugar"], ["Saco extra", "$1.000 c/u"]], detalle: "Juego de embocar bolsitas, ideal para patio y eventos", precio: "$40.000", imagen: "img/juegos/cornhole/cornhole1-1.jpg", fotos: "img/juegos/cornhole/cornhole1-" },
+            { titulo: "Yenga", medidas: [["Piezas", "52 de 20 cm aprox."], ["Altura inicial", "74 cm"], ["Altura final", "140 cm aprox."]], detalle: "Torre de bloques de madera, versión tamaño gigante", precio: "$40.000", imagen: "img/juegos/yenga/yenga1-1.jpg", fotos: "img/juegos/yenga/yenga1-" },
             // PENDIENTE — medidas de Croquet, Pesca y Laberinto: agrégalas con
             //   medidas: [["Largo","__ cm"], ["Ancho","__ cm"]],
-            { titulo: "Croquet",         detalle: "Set clásico de croquet para el jardín",                 precio: "Consultar", imagen: "img/juegos/croquet1.jpg" },
-            { titulo: "Pesca",           detalle: "Juego de pesca en madera para niños y adultos",         precio: "Consultar", imagen: "img/juegos/pesca1.jpg" },
-            { titulo: "Laberinto",       detalle: "Juego de habilidad y paciencia en madera",              precio: "$40.000", imagen: "img/juegos/laberinto1.jpg" },
-            // La foto del laberinto doble se guarda en: img/juegos/laberinto2.png
-            // (mientras no exista, el sitio muestra el logo en su lugar)
-            { titulo: "Laberinto doble", detalle: "Laberinto de doble tablero, para jugar de a dos",       precio: "$70.000", imagen: "img/juegos/laberinto2.png" }
+            { titulo: "Croquet", detalle: "Set clásico de croquet para el jardín", precio: "Consultar", imagen: "img/juegos/croquet/croquet1-1.jpg", fotos: "img/juegos/croquet/croquet1-" },
+            { titulo: "Pesca Milagrosa", detalle: "Juego de pesca en madera para niños y adultos", precio: "Consultar", imagen: "img/juegos/pescamilagrosa/pesca1-1.jpg", fotos: "img/juegos/pescamilagrosa/pesca1-" },
+            { titulo: "Laberinto", detalle: "Juego de habilidad y paciencia en madera", precio: "$40.000", imagen: "img/juegos/laberinto1/laberinto1-1.jpg", fotos: "img/juegos/laberinto1/laberinto1-" },
+            { titulo: "Laberinto doble", detalle: "Laberinto de doble tablero, para jugar de a dos", precio: "$70.000", imagen: "img/juegos/laberintodoble/laberinto2-1.jpg", fotos: "img/juegos/laberinto2/laberinto2-" }
             // ← agrega aquí más juegos
+        ]
+    },
+
+    // ==================================================================
+    // ARRIENDO DE JUEGOS  ·  (por definir: juegos, valores y fotos)
+    // Cuando lo tengas, agrega una línea por cada juego arrendable.
+    // ==================================================================
+    arriendo: {
+        nombre: "Arriendo de juegos",
+        modelos: [
+            {
+                titulo: "Arriendo de juegos",
+                detalle: "Juegos de madera para eventos y celebraciones",
+                descripcion: "Pronto tendrás aquí los juegos disponibles para arriendo. Mientras tanto, escríbenos para consultar disponibilidad y valores para tu evento.",
+                beneficios: ["Para eventos y celebraciones", "Consulta fechas y valores por WhatsApp"],
+                precio: "Consultar",
+                imagen: "img/prelogo.jpg",
+                medidas: []
+            }
+            // ← agrega aquí los juegos de arriendo
         ]
     }
 };
@@ -205,6 +225,15 @@ function cargarCategoria(categoriaId) {
         });
     });
 
+    // Si el juego tiene varias fotos, la miniatura usa la primera que exista
+    categoria.modelos.forEach((modelo, i) => {
+        if (!modelo.fotos) return;
+        fotosDe(modelo).then((lista) => {
+            const img = modelosLista.querySelector(`.modelo[data-index="${i}"] img`);
+            if (img && lista[0] && modelo === catalogo[categoriaId].modelos[i]) img.src = lista[0];
+        });
+    });
+
     seleccionarModelo(categoriaId, 0);
 }
 
@@ -221,24 +250,128 @@ function crearModelo(modelo, index) {
     `;
 }
 
+// ---------- Fotos deslizables por producto ----------
+const EXTENSIONES = ["jpg", "png", "jpeg", "webp"];
+const MAX_FOTOS = 12;
+const detalleCaja = document.querySelector(".detalle-imagen");
+const carPrev = detalleCaja.querySelector(".car-prev");
+const carNext = detalleCaja.querySelector(".car-next");
+const carContador = detalleCaja.querySelector(".car-contador");
+const carMinis = document.querySelector(".car-miniaturas");
+
+let fotosActuales = [];
+let fotoIdx = 0;
+let tituloActual = "";
+let seleccionToken = 0;
+
+function existeImagen(src) {
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+        img.src = src;
+    });
+}
+
+// Busca prefijo1.jpg, prefijo2.jpg ... hasta que falte una
+async function descubrirFotos(prefijo) {
+    const lista = [];
+    let ext = null;
+    for (let n = 1; n <= MAX_FOTOS; n++) {
+        if (!ext) {
+            const res = await Promise.all(EXTENSIONES.map((e) => existeImagen(`${prefijo}${n}.${e}`)));
+            const i = res.indexOf(true);
+            if (i === -1) break;
+            ext = EXTENSIONES[i];
+        } else if (!(await existeImagen(`${prefijo}${n}.${ext}`))) {
+            break;
+        }
+        lista.push(`${prefijo}${n}.${ext}`);
+    }
+    return lista;
+}
+
+function fotosDe(modelo) {
+    if (!modelo._fotos) {
+        if (modelo.imagenes) {
+            modelo._fotos = Promise.resolve(modelo.imagenes);
+        } else if (modelo.fotos) {
+            modelo._fotos = descubrirFotos(modelo.fotos).then((l) => (l.length ? l : [modelo.imagen]));
+        } else {
+            modelo._fotos = Promise.resolve([modelo.imagen]);
+        }
+    }
+    return modelo._fotos;
+}
+
+function mostrarFoto(i) {
+    fotoIdx = (i + fotosActuales.length) % fotosActuales.length;
+    delete detalleImagen.dataset.respaldo;
+    detalleImagen.src = fotosActuales[fotoIdx];
+    detalleImagen.alt = fotosActuales.length > 1 ? `${tituloActual} - foto ${fotoIdx + 1}` : tituloActual;
+    carContador.textContent = `${fotoIdx + 1} / ${fotosActuales.length}`;
+
+    [...carMinis.children].forEach((t, k) => t.classList.toggle("activa", k === fotoIdx));
+    const activa = carMinis.children[fotoIdx];
+    if (activa) {
+        carMinis.scrollTo({ left: activa.offsetLeft - (carMinis.clientWidth - activa.clientWidth) / 2, behavior: "smooth" });
+    }
+}
+
+function setFotos(lista) {
+    fotosActuales = lista;
+    const varias = lista.length > 1;
+    carPrev.hidden = !varias;
+    carNext.hidden = !varias;
+    carContador.hidden = !varias;
+    carMinis.hidden = !varias;
+    carMinis.innerHTML = varias
+        ? lista.map((src, k) => `<img src="${src}" alt="Foto ${k + 1}" loading="lazy" data-k="${k}">`).join("")
+        : "";
+    mostrarFoto(0);
+}
+
+carPrev.addEventListener("click", () => mostrarFoto(fotoIdx - 1));
+carNext.addEventListener("click", () => mostrarFoto(fotoIdx + 1));
+carMinis.addEventListener("click", (e) => {
+    const k = e.target.dataset && e.target.dataset.k;
+    if (k !== undefined) mostrarFoto(Number(k));
+});
+detalleImagen.addEventListener("click", () => {
+    abrirLightbox(fotosActuales.map((src) => ({ src, alt: tituloActual })), fotoIdx);
+});
+
+// Deslizar con el dedo sobre la foto
+let carToqueX = null;
+detalleCaja.addEventListener("touchstart", (e) => { carToqueX = e.touches[0].clientX; }, { passive: true });
+detalleCaja.addEventListener("touchend", (e) => {
+    if (carToqueX === null) return;
+    const dx = e.changedTouches[0].clientX - carToqueX;
+    carToqueX = null;
+    if (Math.abs(dx) > 40 && fotosActuales.length > 1) mostrarFoto(fotoIdx + (dx < 0 ? 1 : -1));
+});
+
 function seleccionarModelo(categoriaId, modeloIndex) {
     const categoria = catalogo[categoriaId];
     const modelo = categoria.modelos[modeloIndex];
+    const token = ++seleccionToken;
 
     modelosLista.querySelectorAll(".modelo").forEach((item, index) => {
         item.classList.toggle("activo", index === modeloIndex);
     });
 
-    detalleImagen.src = modelo.imagen;
-    detalleImagen.onclick = () => abrirLightbox(
-        categoria.modelos.map((x) => ({ src: x.imagen, alt: x.titulo })),
-        modeloIndex
-    );
+    tituloActual = modelo.titulo;
+    setFotos([modelo.imagen]);
+    fotosDe(modelo).then((lista) => {
+        if (token !== seleccionToken) return;
+        if (lista.length !== 1 || lista[0] !== modelo.imagen) setFotos(lista);
+    });
+
     detalleWhats.href = `https://wa.me/${WA}?text=${encodeURIComponent("Hola, quiero cotizar: " + modelo.titulo)}`;
-    detalleImagen.alt = modelo.titulo;
     detalleCategoria.textContent = categoria.nombre;
     detalleTitulo.textContent = modelo.titulo;
-    detalleDescripcion.textContent = `${modelo.detalle}. Fabricado completamente a medida con opciones de madera, color y terminación según tu espacio.`;
+    detalleDescripcion.textContent = modelo.descripcion ||
+        `${modelo.detalle}. Fabricado completamente a medida con opciones de madera, color y terminación según tu espacio.`;
     detallePrecio.textContent = modelo.precio;
     detallePrecio.hidden = false;
 
@@ -248,16 +381,12 @@ function seleccionarModelo(categoriaId, modeloIndex) {
         .join("");
     detalleMedidas.hidden = medidas.length === 0;
 
-    actualizarBeneficios(categoriaId !== "juegos");
+    actualizarBeneficios(modelo.beneficios || (categoriaId === "juegos" ? beneficios : [...beneficios, beneficioSellado]));
 }
 
-function actualizarBeneficios(conSellado) {
+function actualizarBeneficios(items) {
     const lista = detalleProducto.querySelector("ul");
-    const items = conSellado ? [...beneficios, beneficioSellado] : beneficios;
-
-    lista.innerHTML = items
-        .map((beneficio) => `<li>${beneficio}</li>`)
-        .join("");
+    lista.innerHTML = items.map((beneficio) => `<li>${beneficio}</li>`).join("");
 }
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -477,12 +606,14 @@ document.addEventListener("error", (e) => {
 })();
 
 // ---------- Categorías que se desplazan solas en celular ----------
-// Cada pocos segundos avanzan a la siguiente categoría para que se note que hay más.
-// Se detienen al tocarlas y siguen solas después de unos segundos.
+// Cada ~2,5 s la fila avanza a la siguiente categoría hasta llegar al final y vuelve al inicio.
+// Se detiene al tocarla y sigue sola después de 8 segundos.
+// (Si el celular tiene "reducir animaciones", avanza igual pero sin deslizamiento suave.)
 (function categoriasAutomaticas() {
     const caja = document.querySelector(".categorias");
-    if (!caja || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!caja) return;
 
+    const suave = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
     const items = [...caja.querySelectorAll(".categoria")];
     let pausada = false;
     let reanudar;
@@ -499,9 +630,13 @@ document.addEventListener("error", (e) => {
         const maximo = caja.scrollWidth - caja.clientWidth;
         if (pausada || document.hidden || maximo <= 4) return;   // solo si hay categorías fuera de pantalla
 
-        const base = items[0].offsetLeft;
-        const siguiente = items.find((el) => el.offsetLeft - base > caja.scrollLeft + 8);
-        const destino = siguiente && caja.scrollLeft < maximo - 4 ? siguiente.offsetLeft - base : 0;
-        caja.scrollTo({ left: destino, behavior: "smooth" });
-    }, 2600);
+        const cajaX = caja.getBoundingClientRect().left;
+        const actual = caja.scrollLeft;
+        const relleno = parseFloat(getComputedStyle(caja).paddingLeft) || 0;
+        const posiciones = items.map((el) => el.getBoundingClientRect().left - cajaX + actual - relleno);
+        const siguiente = posiciones.find((p) => p > actual + 8);
+
+        const destino = siguiente === undefined || actual >= maximo - 4 ? 0 : Math.min(siguiente, maximo);
+        caja.scrollTo({ left: destino, behavior: suave });
+    }, 2500);
 })();

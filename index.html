@@ -97,7 +97,7 @@
 
                     <button class="categoria" type="button" data-category="sillones">
                         <span class="categoria-icono">
-                            <i class="fa-solid fa-couch"></i>
+                            <i class="fa-solid fa-chair"></i>
                         </span>
 
                         <span class="categoria-info">
@@ -108,7 +108,7 @@
 
                     <button class="categoria activa" type="button" data-category="bancas">
                         <span class="categoria-icono">
-                            <i class="fa-solid fa-chair"></i>
+                            <i class="fa-solid fa-couch"></i>
                         </span>
 
                         <span class="categoria-info">
@@ -149,6 +149,17 @@
                             <small>Cornhole, Yenga, Croquet y más</small>
                         </span>
                     </button>
+                
+                    <button class="categoria" type="button" data-category="arriendo">
+                        <span class="categoria-icono">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </span>
+
+                        <span class="categoria-info">
+                            <strong>Arriendo de juegos</strong>
+                            <small>Para eventos y celebraciones</small>
+                        </span>
+                    </button>
                 </aside>
 
                 <section class="modelos" aria-live="polite">
@@ -159,7 +170,11 @@
                 <section class="detalle-producto" aria-live="polite">
                     <div class="detalle-imagen">
                         <img src="img/bancas/banca1-1.jpg" alt="Banca doble natural">
+                        <button class="car-flecha car-prev" type="button" aria-label="Foto anterior" hidden>&#10094;</button>
+                        <button class="car-flecha car-next" type="button" aria-label="Foto siguiente" hidden>&#10095;</button>
+                        <span class="car-contador" hidden></span>
                     </div>
+                    <div class="car-miniaturas" aria-label="Más fotos del producto" hidden></div>
 
                     <div class="detalle-info">
                         <span class="detalle-categoria">Bancas y asientos</span>
