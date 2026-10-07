@@ -39,14 +39,34 @@ const MEDIDAS_BANCA_TRES = [
     ["Ancho", "160 cm"], ["Profundidad", "50 cm"], ["Alto total", "90 cm"], ["Alto del asiento", "45 cm"]
 ];
 
+const MEDIDAS_INDIVIDUAL = [
+    ["Ancho", "62 cm"], ["Profundidad", "50 cm"], ["Alto total", "90 cm"], ["Alto del asiento", "45 cm"]
+];
+
 // ======================================================================
 // CATÁLOGO — AQUÍ SE AGREGAN FOTOS Y PRODUCTOS A MANO
 //
-// Para agregar un producto: copia una línea { titulo, detalle, precio, imagen }
-// dentro de la categoría que quieras (respeta las comas) y cambia los datos.
-// Las fotos se guardan en la carpeta img/ y aquí se escribe la ruta, ej:
-//     imagen: "img/juegos/cornhole1.jpg"
-// Si la foto todavía no existe, el sitio muestra el logo en su lugar.
+//  CÓMO AGREGAR MÁS FOTOS A UNA CATEGORÍA (paso a paso)
+//
+//  1) Guarda la foto en la carpeta de su categoría (se indica sobre cada bloque):
+//        Sillones → img/sofas/        Bancas   → img/bancas/
+//        Jardín   → img/jardinyexterior/   Interior → img/ventas/
+//        Juegos   → img/juegos/
+//     Usa nombres sin espacios ni tildes, por ejemplo:  banca4-1.jpg
+//
+//  2) Dentro de la categoría elegida, copia UNA línea completa  { ... }
+//     y pégala debajo de la última. Cada línea termina en coma,
+//     salvo la última de la categoría.
+//
+//  3) Cambia titulo, detalle, precio, imagen y medidas.
+//        medidas: [["Ancho","100 cm"], ["Alto","50 cm"]]    (o  medidas: []  si no hay)
+//
+//  4) Guarda, sube con git y listo.
+//
+//  El tamaño de la foto no importa: el sitio la ajusta sola dentro de su
+//  marco, sin recortarla ni descuadrar la página. Para que cargue rápido,
+//  conviene que pese menos de 500 KB (puedes reducirla en squoosh.app).
+//  Si la foto aún no existe, se muestra el logo en su lugar.
 // ======================================================================
 
 const catalogo = {
@@ -57,10 +77,10 @@ const catalogo = {
     sillones: {
         nombre: "Sillones individuales",
         modelos: [
-            { titulo: "Sillón natural",       detalle: "Madera de pino",  precio: "$50.000", imagen: "img/sofas/sofa1-7.jpg" },
-            { titulo: "Sillón barniz marino", detalle: "Tono natural",    precio: "$50.000", imagen: "img/sofas/sofa1-6.jpg" },
-            { titulo: "Sillón nogal",         detalle: "Acabado natural", precio: "$50.000", imagen: "img/sofas/sofa1-8.jpg" },
-            { titulo: "Sillón diseño moderno", detalle: "Diseño moderno",  precio: "$50.000", imagen: "img/sofas/sofa1-1.jpg" }
+            { titulo: "Sillón natural", medidas: MEDIDAS_INDIVIDUAL,       detalle: "Madera de pino",  precio: "$50.000", imagen: "img/sofas/sofa1-7.jpg" },
+            { titulo: "Sillón barniz marino", medidas: MEDIDAS_INDIVIDUAL, detalle: "Tono natural",    precio: "$50.000", imagen: "img/sofas/sofa1-6.jpg" },
+            { titulo: "Sillón nogal", medidas: MEDIDAS_INDIVIDUAL,         detalle: "Acabado natural", precio: "$50.000", imagen: "img/sofas/sofa1-8.jpg" },
+            { titulo: "Sillón diseño moderno", medidas: MEDIDAS_INDIVIDUAL, detalle: "Diseño moderno",  precio: "$50.000", imagen: "img/sofas/sofa1-1.jpg" }
             // ← agrega aquí más sillones
         ]
     },
@@ -75,8 +95,8 @@ const catalogo = {
             { titulo: "Banca doble barniz marino", medidas: MEDIDAS_BANCA_DOBLE,  detalle: "Tono natural",    precio: "$70.000",  imagen: "img/bancas/banca1-2.jpg" },
             { titulo: "Banca doble nogal", medidas: MEDIDAS_BANCA_DOBLE,          detalle: "Acabado natural", precio: "$70.000",  imagen: "img/bancas/banca1-3.jpg" },
             { titulo: "Banca tres cuerpos natural", medidas: MEDIDAS_BANCA_TRES,       detalle: "Madera de pino",  precio: "$100.000", imagen: "img/bancas/banca2-2.jpg" },
-            { titulo: "Banca tres cuerpos  barniz marino", medidas: MEDIDAS_BANCA_TRES, detalle: "Tono natural",    precio: "$100.000", imagen: "img/bancas/banca2-3.jpg" },
-            { titulo: "Banca tres cuerpos  nogal", medidas: MEDIDAS_BANCA_TRES,         detalle: "Acabado natural", precio: "$100.000", imagen: "img/bancas/banca2-4.jpg" }
+            { titulo: "Banca tres cuerpos barniz marino", medidas: MEDIDAS_BANCA_TRES, detalle: "Tono natural",    precio: "$100.000", imagen: "img/bancas/banca2-3.jpg" },
+            { titulo: "Banca tres cuerpos nogal", medidas: MEDIDAS_BANCA_TRES,         detalle: "Acabado natural", precio: "$100.000", imagen: "img/bancas/banca2-4.jpg" }
             // ← agrega aquí más bancas
         ]
     },
@@ -117,6 +137,8 @@ const catalogo = {
         modelos: [
             { titulo: "Cornhole", medidas: [["Tablero", "100 x 60 cm"], ["Incluye", "6 sacos para jugar"], ["Saco extra", "$1.000 c/u"]],        detalle: "Juego de embocar bolsitas, ideal para patio y eventos", precio: "$40.000", imagen: "img/juegos/cornhole1.jpg",  },
             { titulo: "Yenga", medidas: [["Piezas", "52 de 20 cm aprox."], ["Altura inicial", "74 cm"], ["Altura final", "140 cm aprox."]],           detalle: "Torre de bloques de madera, versión tamaño gigante",    precio: "$40.000", imagen: "img/juegos/yenga.png"},
+            // PENDIENTE — medidas de Croquet, Pesca y Laberinto: agrégalas con
+            //   medidas: [["Largo","__ cm"], ["Ancho","__ cm"]],
             { titulo: "Croquet",         detalle: "Set clásico de croquet para el jardín",                 precio: "Consultar", imagen: "img/juegos/croquet1.jpg" },
             { titulo: "Pesca",           detalle: "Juego de pesca en madera para niños y adultos",         precio: "Consultar", imagen: "img/juegos/pesca1.jpg" },
             { titulo: "Laberinto",       detalle: "Juego de habilidad y paciencia en madera",              precio: "$40.000", imagen: "img/juegos/laberinto1.jpg" },
@@ -177,6 +199,9 @@ function cargarCategoria(categoriaId) {
     modelos.forEach((modelo, index) => {
         modelo.addEventListener("click", () => {
             seleccionarModelo(categoriaId, index);
+            if (window.matchMedia("(max-width: 992px)").matches) {
+                detalleProducto.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
         });
     });
 
@@ -186,7 +211,7 @@ function cargarCategoria(categoriaId) {
 function crearModelo(modelo, index) {
     return `
         <button class="modelo" type="button" data-index="${index}">
-            <img src="${modelo.imagen}" alt="${modelo.titulo}">
+            <img src="${modelo.imagen}" alt="${modelo.titulo}" loading="lazy" decoding="async">
             <span class="modelo-info">
                 <strong>${modelo.titulo}</strong>
                 <small>${modelo.detalle}</small>
@@ -449,4 +474,34 @@ document.addEventListener("error", (e) => {
     }
     if (location.hash === "#videos") abrir();
     window.addEventListener("hashchange", () => { if (location.hash === "#videos") abrir(); });
+})();
+
+// ---------- Categorías que se desplazan solas en celular ----------
+// Cada pocos segundos avanzan a la siguiente categoría para que se note que hay más.
+// Se detienen al tocarlas y siguen solas después de unos segundos.
+(function categoriasAutomaticas() {
+    const caja = document.querySelector(".categorias");
+    if (!caja || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const items = [...caja.querySelectorAll(".categoria")];
+    let pausada = false;
+    let reanudar;
+
+    const pausar = () => {
+        pausada = true;
+        clearTimeout(reanudar);
+        reanudar = setTimeout(() => { pausada = false; }, 8000);
+    };
+    ["touchstart", "pointerdown", "wheel"].forEach((ev) =>
+        caja.addEventListener(ev, pausar, { passive: true }));
+
+    setInterval(() => {
+        const maximo = caja.scrollWidth - caja.clientWidth;
+        if (pausada || document.hidden || maximo <= 4) return;   // solo si hay categorías fuera de pantalla
+
+        const base = items[0].offsetLeft;
+        const siguiente = items.find((el) => el.offsetLeft - base > caja.scrollLeft + 8);
+        const destino = siguiente && caja.scrollLeft < maximo - 4 ? siguiente.offsetLeft - base : 0;
+        caja.scrollTo({ left: destino, behavior: "smooth" });
+    }, 2600);
 })();
