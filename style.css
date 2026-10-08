@@ -1675,3 +1675,155 @@ FOTOS DESLIZABLES DEL PRODUCTO
     .car-flecha{ width:36px; height:36px; }
     .car-miniaturas img{ width:54px; height:54px; flex-basis:54px; }
 }
+
+
+/*======================================
+ARRIENDO DE JUEGOS
+======================================*/
+
+.detalle-info .btn[hidden]{ display:none; }
+.arriendo-agregar{ cursor:pointer; }
+.arriendo-agregar:disabled{ opacity:.55; cursor:default; transform:none; }
+.arriendo-panel{
+    margin-top:22px;
+    padding:18px;
+    border:1px solid #eadfc8;
+    border-radius:14px;
+    background:#fffaf0;
+}
+.arriendo-panel[hidden]{ display:none; }
+.arriendo-panel h3{ margin-bottom:6px; font-size:20px; color:#222; }
+.arriendo-aviso{ margin-bottom:10px !important; font-size:14px !important; line-height:20px !important; }
+.arriendo-items{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }
+.arriendo-items small{ color:#8a7a63; }
+.arriendo-chip{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:6px 8px 6px 12px;
+    border-radius:999px;
+    background:#f2d38b;
+    color:#111;
+    font-size:14px;
+    font-weight:bold;
+}
+.arriendo-chip button{
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    background:rgba(0,0,0,.12);
+    color:#111;
+    font-size:16px;
+    line-height:1;
+    cursor:pointer;
+}
+.arriendo-panel label{ display:block; margin-bottom:6px; font-size:14px; font-weight:bold; }
+.arriendo-panel select,
+.arriendo-panel input{
+    width:100%;
+    margin-bottom:12px;
+    padding:11px;
+    border:1px solid #d9cdb3;
+    border-radius:8px;
+    background:#fff;
+    font-size:15px;
+}
+.arriendo-panel input[hidden]{ display:none; }
+.arriendo-total{
+    margin:4px 0 14px;
+    color:#111;
+    font-size:24px;
+    font-weight:900;
+}
+.arriendo-total[hidden]{ display:none; }
+.arriendo-wa.deshabilitado{ opacity:.45; pointer-events:none; box-shadow:none; }
+
+
+/*======================================
+ARRIENDO: juegos disponibles en barra horizontal
+(las demás categorías no cambian)
+======================================*/
+
+.modo-arriendo .modelos-lista{
+    display:flex;
+    gap:12px;
+    padding-bottom:10px;
+    overflow-x:auto;
+    scroll-snap-type:x proximity;
+}
+.modo-arriendo .modelo{
+    flex:0 0 170px;
+    flex-direction:column;
+    align-items:stretch;
+    margin:0;
+    text-align:center;
+    scroll-snap-align:start;
+}
+.modo-arriendo .modelo:hover{ transform:none; }
+.modo-arriendo .modelo img{ width:100%; height:110px; }
+
+@media (min-width:993px){
+    .catalogo-contenedor.modo-arriendo{ grid-template-columns:250px 1fr; }
+    .catalogo-contenedor.modo-arriendo .categorias{ grid-column:1; grid-row:1 / span 2; }
+    .catalogo-contenedor.modo-arriendo .modelos{ grid-column:2; grid-row:1; }
+    .catalogo-contenedor.modo-arriendo .detalle-producto{ grid-column:2; grid-row:2; }
+}
+
+
+/*======================================
+ARRIENDO RÁPIDO: tarjetas compactas + panel pegado a la barra
+======================================*/
+
+.modo-arriendo .juego-card{ position:relative; flex:0 0 150px; scroll-snap-align:start; }
+.modo-arriendo .juego-card .modelo{ width:100%; height:100%; padding:8px; }
+.modo-arriendo .modelo img{ height:90px; }
+.modo-arriendo .modelo-info small{ display:none; }
+.modo-arriendo .modelo-info strong{ font-size:15px; }
+.modo-arriendo .modelo-info em{ font-size:13px; }
+.modo-arriendo .modelo.activo::after{
+    content:"✓";
+    position:absolute;
+    top:6px;
+    left:6px;
+    width:24px;
+    height:24px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#111;
+    border-radius:50%;
+    background:#d8a545;
+    font-weight:bold;
+}
+.modo-arriendo .modelo{ position:relative; }
+.juego-fotos{
+    position:absolute;
+    top:6px;
+    right:6px;
+    padding:3px 9px;
+    color:#fff;
+    border-radius:999px;
+    background:rgba(17,17,17,.65);
+    font-size:12px;
+    cursor:pointer;
+}
+.modelos > .arriendo-panel{ margin-top:8px; }
+.arriendo-aviso{ color:#666; }
+
+@media (min-width:700px){
+    .modelos > .arriendo-panel{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        column-gap:28px;
+        align-items:start;
+    }
+    .modelos > .arriendo-panel[hidden]{ display:none; }
+    .arriendo-panel h3{ grid-column:1; grid-row:1; }
+    .arriendo-aviso{ grid-column:1; grid-row:2; }
+    .arriendo-items{ grid-column:1; grid-row:3 / span 3; align-content:flex-start; }
+    .arriendo-panel label{ grid-column:2; grid-row:1; }
+    .arriendo-panel select{ grid-column:2; grid-row:2; }
+    .arriendo-panel input{ grid-column:2; grid-row:3; }
+    .arriendo-total{ grid-column:2; grid-row:4; }
+    .arriendo-wa{ grid-column:2; grid-row:5; text-align:center; }
+}

@@ -144,31 +144,74 @@ const catalogo = {
             { titulo: "Croquet", detalle: "Set clásico de croquet para el jardín", precio: "Consultar", imagen: "img/juegos/croquet/croquet1-1.jpg", fotos: "img/juegos/croquet/croquet1-" },
             { titulo: "Pesca Milagrosa", detalle: "Juego de pesca en madera para niños y adultos", precio: "Consultar", imagen: "img/juegos/pescamilagrosa/pesca1-1.jpg", fotos: "img/juegos/pescamilagrosa/pesca1-" },
             { titulo: "Laberinto", detalle: "Juego de habilidad y paciencia en madera", precio: "$40.000", imagen: "img/juegos/laberinto1/laberinto1-1.jpg", fotos: "img/juegos/laberinto1/laberinto1-" },
-            { titulo: "Laberinto doble", detalle: "Laberinto de doble tablero, para jugar de a dos", precio: "$70.000", imagen: "img/juegos/laberintodoble/laberinto2-1.jpg", fotos: "img/juegos/laberinto2/laberinto2-" }
+            { titulo: "Laberinto doble", detalle: "Laberinto de doble tablero, para jugar de a dos", precio: "$70.000", imagen: "img/juegos/laberintodoble/laberintodoble1-1.jpg", fotos: "img/juegos/laberintodoble/laberintodoble1-" }
             // ← agrega aquí más juegos
         ]
     },
 
     // ==================================================================
-    // ARRIENDO DE JUEGOS  ·  (por definir: juegos, valores y fotos)
-    // Cuando lo tengas, agrega una línea por cada juego arrendable.
+    // ARRIENDO DE JUEGOS  ·  se arma solo más abajo (ver "CONFIGURACIÓN DEL ARRIENDO")
     // ==================================================================
     arriendo: {
         nombre: "Arriendo de juegos",
-        modelos: [
-            {
-                titulo: "Arriendo de juegos",
-                detalle: "Juegos de madera para eventos y celebraciones",
-                descripcion: "Pronto tendrás aquí los juegos disponibles para arriendo. Mientras tanto, escríbenos para consultar disponibilidad y valores para tu evento.",
-                beneficios: ["Para eventos y celebraciones", "Consulta fechas y valores por WhatsApp"],
-                precio: "Consultar",
-                imagen: "img/prelogo.jpg",
-                medidas: []
-            }
-            // ← agrega aquí los juegos de arriendo
-        ]
+        modelos: []
     }
 };
+
+// ======================================================================
+// CONFIGURACIÓN DEL ARRIENDO
+//
+//  · PRECIOS_ARRIENDO: valor de cada juego. La persona NO ve estos valores,
+//    solo ve el total. (Ojo: quien abra el código fuente de la página sí
+//    puede verlos; para que sean 100% privados habría que calcularlos en un servidor.)
+//  · ARRIENDO_MINIMO: mínimo de juegos para arrendar.
+//  · COMUNAS_ARRIENDO: comunas donde se muestra el valor real. Cualquier otra
+//    comuna ve el botón "Cotizar".
+//  · Un juego con  proximamente: true  se muestra como "Próximamente" y no se puede elegir.
+// ======================================================================
+const ARRIENDO_MINIMO = 3;
+const COMUNAS_ARRIENDO = ["Renca", "Cerro Navia", "Lo Prado", "Independencia"];
+const PRECIOS_ARRIENDO = {
+    "Cornhole": 12000,
+    "Croquet": 12000,
+    "Laberinto": 12000,
+    "Laberinto doble": 15000,
+    "Pesca Milagrosa": 15000,
+    "Yenga": 12000
+};
+const beneficiosArriendo = [
+    `Mínimo ${ARRIENDO_MINIMO} juegos por arriendo`,
+    "Elige los juegos y ve el total al instante"
+];
+
+catalogo.arriendo.modelos = [
+    ...catalogo.juegos.modelos
+        .filter((m) => PRECIOS_ARRIENDO[m.titulo])
+        .map((m) => ({
+            ...m,
+            valor: PRECIOS_ARRIENDO[m.titulo],
+            precio: "Arriendo",
+            medidas: (m.medidas || []).filter(([nombre]) => nombre !== "Saco extra"),
+            descripcion: `${m.detalle}. Agrégalo a tu arriendo.`,
+            beneficios: beneficiosArriendo
+        })),
+    {
+        titulo: "Taca taca",
+        detalle: "Taca taca de madera",
+        descripcion: "Taca taca de madera. Agrégalo a tu arriendo.",
+        valor: 20000,
+        proximamente: false,
+        precio: "Arriendo",
+        medidas: [],
+        beneficios: beneficiosArriendo,
+        imagen: "img/juegos/tacataca/tacataca1-1.jpg",
+        fotos: "img/juegos/tacataca/tacataca1-"
+    }
+];
+
+const arriendoSel = new Set();
+let modeloActual = null;
+let categoriaActualId = "bancas";
 
 // ======================================================================
 // RECOMENDACIONES — AQUÍ SE AGREGAN LAS FOTOS Y CAPTURAS DE WHATSAPP
@@ -211,8 +254,16 @@ function cargarCategoria(categoriaId) {
         .map((modelo, index) => crearModelo(modelo, index))
         .join("");
 
+    categoriaActualId = categoriaId;
+    const esArriendo = categoriaId === "arriendo";
+    document.querySelector(".catalogo-contenedor").classList.toggle("modo-arriendo", esArriendo);
+    modelosContainer.querySelector("h2").textContent = esArriendo ? "Juegos disponibles" : "Modelos disponibles";
     modelosContainer.hidden = false;
-    detalleProducto.hidden = false;
+    detalleProducto.hidden = esArriendo;
+    if (esArriendo) {
+        cargarArriendo();
+        return;
+    }
 
     const modelos = modelosLista.querySelectorAll(".modelo");
 
@@ -234,6 +285,7 @@ function cargarCategoria(categoriaId) {
         });
     });
 
+    refrescarListaArriendo();
     seleccionarModelo(categoriaId, 0);
 }
 
@@ -381,6 +433,7 @@ function seleccionarModelo(categoriaId, modeloIndex) {
         .join("");
     detalleMedidas.hidden = medidas.length === 0;
 
+    configurarArriendo(categoriaId, modelo);
     actualizarBeneficios(modelo.beneficios || (categoriaId === "juegos" ? beneficios : [...beneficios, beneficioSellado]));
 }
 
@@ -388,6 +441,152 @@ function actualizarBeneficios(items) {
     const lista = detalleProducto.querySelector("ul");
     lista.innerHTML = items.map((beneficio) => `<li>${beneficio}</li>`).join("");
 }
+
+
+// ---------- Arriendo: elegir juegos, comuna y total ----------
+const arrAgregar = document.querySelector(".arriendo-agregar");
+const arrPanel = document.querySelector(".arriendo-panel");
+const arrItems = document.querySelector(".arriendo-items");
+const arrAviso = document.querySelector(".arriendo-aviso");
+const arrComuna = document.getElementById("arriendo-comuna");
+const arrOtra = document.getElementById("arriendo-otra");
+const arrTotal = document.querySelector(".arriendo-total");
+const arrWa = document.querySelector(".arriendo-wa");
+
+arrComuna.innerHTML = '<option value="">Elige tu comuna</option>' +
+    COMUNAS_ARRIENDO.map((c) => `<option value="${c}">${c}</option>`).join("") +
+    '<option value="__otra">Otra comuna</option>';
+
+const pesos = (n) => "$" + n.toLocaleString("es-CL");
+
+// El panel "Tu arriendo" vive justo debajo de la barra de juegos (sin bajar hasta el detalle)
+modelosContainer.appendChild(arrPanel);
+
+// Arriendo rápido: tocar un juego lo agrega o quita; "Fotos" abre sus fotos
+function cargarArriendo() {
+    modelosLista.innerHTML = catalogo.arriendo.modelos.map((m, i) => `
+        <div class="juego-card">
+            <button class="modelo" type="button" data-index="${i}">
+                <img src="${m.imagen}" alt="${m.titulo}" loading="lazy" decoding="async">
+                <span class="modelo-info">
+                    <strong>${m.titulo}</strong>
+                    <em></em>
+                </span>
+            </button>
+            <button class="juego-fotos" type="button" data-index="${i}" aria-label="Ver fotos de ${m.titulo}">Fotos</button>
+        </div>`).join("");
+
+    catalogo.arriendo.modelos.forEach((m, i) => {
+        if (!m.fotos) return;
+        fotosDe(m).then((lista) => {
+            const img = modelosLista.querySelector(`.modelo[data-index="${i}"] img`);
+            if (img && lista[0] && categoriaActualId === "arriendo") img.src = lista[0];
+        });
+    });
+
+    arrPanel.hidden = false;
+    refrescarListaArriendo();
+    renderArriendo();
+}
+
+modelosLista.addEventListener("click", (e) => {
+    if (categoriaActualId !== "arriendo") return;
+    const botonFotos = e.target.closest(".juego-fotos");
+    const tarjeta = e.target.closest(".modelo");
+    if (botonFotos) {
+        const m = catalogo.arriendo.modelos[Number(botonFotos.dataset.index)];
+        fotosDe(m).then((lista) => abrirLightbox(lista.map((src) => ({ src, alt: m.titulo })), 0));
+    } else if (tarjeta) {
+        const m = catalogo.arriendo.modelos[Number(tarjeta.dataset.index)];
+        if (!m.proximamente) alternarJuego(m.titulo);
+    }
+});
+
+function configurarArriendo(categoriaId, modelo) {
+    const esArriendo = categoriaId === "arriendo";
+    modeloActual = modelo;
+
+    detallePrecio.hidden = esArriendo;
+    detalleWhats.hidden = esArriendo;
+    arrAgregar.hidden = !esArriendo;
+    arrPanel.hidden = !esArriendo;
+    if (!esArriendo) return;
+
+    actualizarBotonAgregar();
+    renderArriendo();
+}
+
+function actualizarBotonAgregar() {
+    if (!modeloActual) return;
+    if (modeloActual.proximamente) {
+        arrAgregar.textContent = "Próximamente";
+        arrAgregar.disabled = true;
+        return;
+    }
+    arrAgregar.disabled = false;
+    arrAgregar.textContent = arriendoSel.has(modeloActual.titulo) ? "Quitar de mi arriendo" : "Agregar a mi arriendo";
+}
+
+function refrescarListaArriendo() {
+    if (categoriaActualId !== "arriendo") return;
+    catalogo.arriendo.modelos.forEach((m, i) => {
+        const em = modelosLista.querySelector(`.modelo[data-index="${i}"] em`);
+        if (!em) return;
+        em.textContent = m.proximamente ? "Próximamente" : arriendoSel.has(m.titulo) ? "Agregado" : "Toca para agregar";
+        em.closest(".modelo").classList.toggle("activo", arriendoSel.has(m.titulo));
+    });
+}
+
+function alternarJuego(titulo) {
+    if (arriendoSel.has(titulo)) arriendoSel.delete(titulo); else arriendoSel.add(titulo);
+    actualizarBotonAgregar();
+    refrescarListaArriendo();
+    renderArriendo();
+}
+
+function renderArriendo() {
+    const elegidos = catalogo.arriendo.modelos.filter((m) => arriendoSel.has(m.titulo));
+    const faltan = ARRIENDO_MINIMO - elegidos.length;
+    const comuna = arrComuna.value;
+    const otra = comuna === "__otra";
+    const conTarifa = COMUNAS_ARRIENDO.includes(comuna);
+
+    arrItems.innerHTML = elegidos.length
+        ? elegidos.map((m) => `<span class="arriendo-chip">${m.titulo}<button type="button" data-t="${m.titulo}" aria-label="Quitar ${m.titulo}">&times;</button></span>`).join("")
+        : "<small>Aún no eliges juegos.</small>";
+
+    arrAviso.textContent = faltan > 0
+        ? `Elige al menos ${ARRIENDO_MINIMO} juegos (te ${faltan > 1 ? "faltan" : "falta"} ${faltan}).`
+        : `${elegidos.length} juegos elegidos.`;
+
+    arrOtra.hidden = !otra;
+
+    const total = elegidos.reduce((suma, m) => suma + m.valor, 0);
+    const mostrarTotal = faltan <= 0 && conTarifa;
+    arrTotal.hidden = !mostrarTotal;
+    arrTotal.textContent = mostrarTotal ? `Total del arriendo: ${pesos(total)}` : "";
+
+    const nombres = elegidos.map((m) => m.titulo).join(", ");
+    const comunaTxt = otra ? (arrOtra.value.trim() || "otra comuna") : comuna;
+    const listo = faltan <= 0 && comuna !== "";
+    let mensaje = `Hola, quiero ${conTarifa ? "arrendar" : "cotizar el arriendo de"}: ${nombres}. Comuna: ${comunaTxt}.`;
+    if (mostrarTotal) mensaje += ` Total: ${pesos(total)}.`;
+
+    arrWa.textContent = conTarifa ? "Reservar por WhatsApp" : "Cotizar por WhatsApp";
+    arrWa.classList.toggle("deshabilitado", !listo);
+    arrWa.href = listo ? `https://wa.me/${WA}?text=${encodeURIComponent(mensaje)}` : "#";
+}
+
+arrAgregar.addEventListener("click", () => {
+    if (modeloActual && !modeloActual.proximamente) alternarJuego(modeloActual.titulo);
+});
+arrItems.addEventListener("click", (e) => {
+    const t = e.target.dataset && e.target.dataset.t;
+    if (t) alternarJuego(t);
+});
+arrComuna.addEventListener("change", renderArriendo);
+arrOtra.addEventListener("input", renderArriendo);
+arrWa.addEventListener("click", (e) => { if (arrWa.classList.contains("deshabilitado")) e.preventDefault(); });
 
 window.addEventListener("DOMContentLoaded", () => {
     cargarCategoria("bancas");
