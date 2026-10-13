@@ -1827,3 +1827,78 @@ ARRIENDO RÁPIDO: tarjetas compactas + panel pegado a la barra
     .arriendo-total{ grid-column:2; grid-row:4; }
     .arriendo-wa{ grid-column:2; grid-row:5; text-align:center; }
 }
+
+
+/*======================================
+AJUSTES V2: PC + CELULAR, ARRIENDO SIN CORTES
+======================================*/
+
+html{ -webkit-text-size-adjust:100%; }
+button, select, input{ font-family:inherit; }
+.modelos, .detalle-producto{ min-width:0; }
+a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible, summary:focus-visible{
+    outline:3px solid #d8a545;
+    outline-offset:2px;
+}
+
+/* Arriendo: todos los juegos a la vista (cuadrícula), nada queda cortado */
+.modo-arriendo .modelos-lista{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(150px, 1fr));
+    gap:12px;
+    padding-bottom:0;
+    overflow:visible;
+}
+.modo-arriendo .juego-card{ flex:none; min-width:0; }
+.modo-arriendo .modelo{ flex:none; margin:0; }
+.modo-arriendo .modelo img{ width:100%; height:100px; }
+.modo-arriendo .modelo-info{ align-items:center; }
+.modo-arriendo .modelo-info strong{ overflow-wrap:anywhere; }
+.modelos > .arriendo-panel{ margin-top:18px; }
+.arriendo-total.consulta{ font-size:15px; font-weight:bold; color:#8a5a00; }
+.arriendo-wa{ width:100%; text-align:center; }
+.arriendo-panel select{ cursor:pointer; }
+
+/* Pantallas táctiles: sin efectos hover pegados */
+@media (hover:none){
+    .categoria:hover, .modelo:hover, .btn:hover, .btn-oferta:hover{ transform:none; }
+}
+
+/* Celulares y tablets: categorías siempre visibles (cuadrícula), botones fáciles de tocar */
+@media (max-width:992px){
+    .categorias{
+        display:grid;
+        grid-template-columns:repeat(2, 1fr);
+        gap:8px;
+        padding:12px;
+        overflow:visible;
+        -webkit-mask-image:none;
+        mask-image:none;
+    }
+    .categoria{ min-width:0; width:100%; min-height:58px; padding:8px 10px; gap:10px; }
+    .categoria-icono{ width:38px; height:38px; flex-basis:38px; font-size:17px; }
+    .categoria-info strong{ font-size:14px; line-height:1.2; margin:0; }
+    .categoria-info small{ display:none; }
+
+    .modelos h2{ font-size:20px; }
+    .modelo{ min-height:64px; }
+    .btn, .btn-secundario, .cta-btn{ min-height:46px; }
+    .arriendo-panel select, .arriendo-panel input{ font-size:16px; min-height:46px; } /* evita zoom automático en iPhone */
+    .arriendo-chip button{ width:28px; height:28px; }
+    .modo-arriendo .modelos-lista{ grid-template-columns:repeat(2, 1fr); }
+    .footer{ padding-bottom:84px; }
+}
+@media (min-width:600px) and (max-width:992px){
+    .categorias{ grid-template-columns:repeat(3, 1fr); }
+    .modo-arriendo .modelos-lista{ grid-template-columns:repeat(3, 1fr); }
+}
+@media (max-width:380px){
+    .categoria-info strong{ font-size:13px; }
+    .modelo img{ width:64px; height:64px; }
+}
+
+/* PC: más aire y flechas de fotos más visibles */
+@media (min-width:993px){
+    .modelos-lista{ max-height:calc(100vh - 220px); overflow-y:auto; padding-right:4px; }
+    .modo-arriendo .modelos-lista{ max-height:none; overflow:visible; }
+}

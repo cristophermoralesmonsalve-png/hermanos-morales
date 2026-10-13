@@ -170,7 +170,7 @@ const catalogo = {
 //  · Un juego con  proximamente: true  se muestra como "Próximamente" y no se puede elegir.
 // ======================================================================
 const ARRIENDO_MINIMO = 3;
-const COMUNAS_ARRIENDO = ["Renca", "Cerro Navia", "Lo Prado", "Independencia"];
+const COMUNAS_ARRIENDO = ["Cerro Navia", "Independencia", "Lo Prado", "Quinta Normal", "Renca"];
 const PRECIOS_ARRIENDO = {
     "Cornhole": 12000,
     "Croquet": 12000,
@@ -240,6 +240,9 @@ categorias.forEach((categoria) => {
         categoria.classList.add("activa");
 
         cargarCategoria(categoriaId);
+        if (window.matchMedia("(max-width: 992px)").matches) {
+            modelosContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
     });
 });
 
@@ -453,8 +456,9 @@ const arrOtra = document.getElementById("arriendo-otra");
 const arrTotal = document.querySelector(".arriendo-total");
 const arrWa = document.querySelector(".arriendo-wa");
 
+const opcionesComuna = (l) => l.map((c) => `<option value="${c}">${c}</option>`).join("");
 arrComuna.innerHTML = '<option value="">Elige tu comuna</option>' +
-    COMUNAS_ARRIENDO.map((c) => `<option value="${c}">${c}</option>`).join("") +
+    opcionesComuna(COMUNAS_ARRIENDO) +
     '<option value="__otra">Otra comuna</option>';
 
 const pesos = (n) => "$" + n.toLocaleString("es-CL");
@@ -568,7 +572,7 @@ function renderArriendo() {
 
     const nombres = elegidos.map((m) => m.titulo).join(", ");
     const comunaTxt = otra ? (arrOtra.value.trim() || "otra comuna") : comuna;
-    const listo = faltan <= 0 && comuna !== "";
+    const listo = faltan <= 0 && comuna !== "" && (!otra || arrOtra.value.trim() !== "");
     let mensaje = `Hola, quiero ${conTarifa ? "arrendar" : "cotizar el arriendo de"}: ${nombres}. Comuna: ${comunaTxt}.`;
     if (mostrarTotal) mensaje += ` Total: ${pesos(total)}.`;
 
