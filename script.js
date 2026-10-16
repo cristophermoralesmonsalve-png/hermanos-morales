@@ -139,12 +139,12 @@ const catalogo = {
         modelos: [
             { titulo: "Cornhole", medidas: [["Tablero", "100 x 60 cm"], ["Incluye", "6 sacos para jugar"], ["Saco extra", "$1.000 c/u"]], detalle: "Juego de embocar bolsitas, ideal para patio y eventos", precio: "$40.000", imagen: "img/juegos/cornhole/cornhole1-1.jpg", fotos: "img/juegos/cornhole/cornhole1-" },
             { titulo: "Yenga", medidas: [["Piezas", "52 de 20 cm aprox."], ["Altura inicial", "74 cm"], ["Altura final", "140 cm aprox."]], detalle: "Torre de bloques de madera, versión tamaño gigante", precio: "$40.000", imagen: "img/juegos/yenga/yenga1-1.jpg", fotos: "img/juegos/yenga/yenga1-" },
-            // Croquet y Laberinto doble no llevan medidas por ahora. Si las tienes, agrégalas con
+            // Croquet no lleva medidas por ahora. Si las tienes, agrégalas con
             //   medidas: [["Largo","__ cm"], ["Ancho","__ cm"]],
             { titulo: "Croquet", detalle: "Set clásico de croquet para el jardín", precio: "Consultar", imagen: "img/juegos/croquet/croquet1-1.jpg", fotos: "img/juegos/croquet/croquet1-" },
             { titulo: "Pesca Milagrosa", medidas: [["Base", "80 x 80 cm"], ["Alto", "75 cm aprox. (a la cintura de un niño)"]], detalle: "Juego de pesca en madera para niños y adultos", precio: "Consultar", imagen: "img/juegos/pescamilagrosa/pesca1-1.jpg", fotos: "img/juegos/pescamilagrosa/pesca1-" },
             { titulo: "Laberinto", medidas: [["Tablero", "140 x 60 cm"]], detalle: "Juego de habilidad y paciencia en madera", precio: "$40.000", imagen: "img/juegos/laberinto1/laberinto1-1.jpg", fotos: "img/juegos/laberinto1/laberinto1-" },
-            { titulo: "Laberinto doble", detalle: "Laberinto de doble tablero, para jugar de a dos", precio: "$70.000", imagen: "img/juegos/laberintodoble/laberintodoble1-1.jpg", fotos: "img/juegos/laberintodoble/laberintodoble1-" }
+            { titulo: "Laberinto doble", medidas: [["Tableros", "2 de 140 x 60 cm"], ["Unión", "Bisagra en el marco superior"]], detalle: "Laberinto de doble tablero, para jugar de a dos", precio: "$70.000", imagen: "img/juegos/laberintodoble/laberintodoble1-1.jpg", fotos: "img/juegos/laberintodoble/laberintodoble1-" }
             // ← agrega aquí más juegos
         ]
     },
