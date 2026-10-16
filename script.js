@@ -121,7 +121,7 @@ const catalogo = {
     interior: {
         nombre: "Interior",
         modelos: [
-            { titulo: "Organizador porta llaves", medidas: [["Ancho", "50 cm"], ["Alto", "60 cm"], ["Profundidad", "7 cm"]], detalle: "Decoración funcional para espacios interiores", precio: "$20.000", imagen: "img/ventas/Portallaves1-1.jpg.png" }
+            { titulo: "Organizador porta llaves", medidas: [["Ancho", "50 cm"], ["Alto", "60 cm"], ["Profundidad", "7 cm"]], detalle: "Decoración funcional para espacios interiores", precio: "$20.000", imagen: "img/ventas/Portallaves1-1.jpg" }
             // ← agrega aquí más productos de interior
         ]
     },
@@ -200,7 +200,7 @@ catalogo.arriendo.modelos = [
         detalle: "Taca taca de madera",
         descripcion: "Taca taca de madera. Agrégalo a tu arriendo.",
         valor: 20000,
-        proximamente: false,
+        proximamente: true,   // cambia a false cuando subas las fotos a img/juegos/tacataca/
         precio: "Arriendo",
         medidas: [],
         beneficios: beneficiosArriendo,
@@ -622,6 +622,7 @@ function abrirLightbox(lista, indice = 0) {
     mostrarLightbox();
     lightbox.classList.add("activo");
     document.body.style.overflow = "hidden";
+    lightbox.querySelector(".cerrar").focus();
 }
 
 function cerrarLightbox() {

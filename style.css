@@ -154,7 +154,7 @@ HERO
     background:
         radial-gradient(circle at 18% 32%, rgba(216,165,69,.28), transparent 28%),
         linear-gradient(90deg, rgba(0,0,0,.82), rgba(0,0,0,.58) 48%, rgba(0,0,0,.28)),
-        url("img/portada.png") center/90% no-repeat;
+        url("img/portada.jpg") center/90% no-repeat;
         
 }
 
@@ -1343,6 +1343,9 @@ VISOR DE FOTOS (flechas, cerrar, contador)
     top:10px;
     right:18px;
     z-index:2;
+    padding:0;
+    border:0;
+    background:none;
     color:#fff;
     font-size:42px;
     line-height:1;
