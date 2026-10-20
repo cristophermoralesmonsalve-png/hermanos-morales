@@ -145,7 +145,7 @@ const catalogo = {
             { titulo: "Pesca Milagrosa", medidas: [["Base", "80 x 80 cm"], ["Alto", "75 cm aprox. (a la cintura de un niño)"]], detalle: "Juego de pesca en madera para niños y adultos", precio: "Consultar", imagen: "img/juegos/pescamilagrosa/pesca1-1.jpg", fotos: "img/juegos/pescamilagrosa/pesca1-" },
             { titulo: "Laberinto", medidas: [["Tablero", "140 x 60 cm"]], detalle: "Juego de habilidad y paciencia en madera", precio: "$40.000", imagen: "img/juegos/laberinto1/laberinto1-1.jpg", fotos: "img/juegos/laberinto1/laberinto1-" },
             { titulo: "Laberinto doble", medidas: [["Tableros", "2 de 140 x 60 cm"], ["Unión", "Bisagra en el marco superior"]], detalle: "Laberinto de doble tablero, para jugar de a dos", precio: "$70.000", imagen: "img/juegos/laberintodoble/laberintodoble1-1.jpg", fotos: "img/juegos/laberintodoble/laberintodoble1-" },
-            { titulo: "Taca taca", detalle: "Taca taca de madera", precio: "Consultar", proximamente: true, imagen: "img/juegos/tacataca/tacataca1-1.jpg", fotos: "img/juegos/tacataca/tacataca1-" }   // quita proximamente cuando subas las fotos a img/juegos/tacataca/
+            { titulo: "Taca taca", detalle: "Taca taca de madera", precio: "Consultar", imagen: "img/juegos/tacataca/tacataca1-1.jpg", fotos: "img/juegos/tacataca/tacataca1-" }
             // ← agrega aquí más juegos
         ]
     },
