@@ -144,7 +144,8 @@ const catalogo = {
             { titulo: "Croquet", detalle: "Set clásico de croquet para el jardín", precio: "Consultar", imagen: "img/juegos/croquet/croquet1-1.jpg", fotos: "img/juegos/croquet/croquet1-" },
             { titulo: "Pesca Milagrosa", medidas: [["Base", "80 x 80 cm"], ["Alto", "75 cm aprox. (a la cintura de un niño)"]], detalle: "Juego de pesca en madera para niños y adultos", precio: "Consultar", imagen: "img/juegos/pescamilagrosa/pesca1-1.jpg", fotos: "img/juegos/pescamilagrosa/pesca1-" },
             { titulo: "Laberinto", medidas: [["Tablero", "140 x 60 cm"]], detalle: "Juego de habilidad y paciencia en madera", precio: "$40.000", imagen: "img/juegos/laberinto1/laberinto1-1.jpg", fotos: "img/juegos/laberinto1/laberinto1-" },
-            { titulo: "Laberinto doble", medidas: [["Tableros", "2 de 140 x 60 cm"], ["Unión", "Bisagra en el marco superior"]], detalle: "Laberinto de doble tablero, para jugar de a dos", precio: "$70.000", imagen: "img/juegos/laberintodoble/laberintodoble1-1.jpg", fotos: "img/juegos/laberintodoble/laberintodoble1-" }
+            { titulo: "Laberinto doble", medidas: [["Tableros", "2 de 140 x 60 cm"], ["Unión", "Bisagra en el marco superior"]], detalle: "Laberinto de doble tablero, para jugar de a dos", precio: "$70.000", imagen: "img/juegos/laberintodoble/laberintodoble1-1.jpg", fotos: "img/juegos/laberintodoble/laberintodoble1-" },
+            { titulo: "Taca taca", detalle: "Taca taca de madera", precio: "Consultar", proximamente: true, imagen: "img/juegos/tacataca/tacataca1-1.jpg", fotos: "img/juegos/tacataca/tacataca1-" }   // quita proximamente cuando subas las fotos a img/juegos/tacataca/
             // ← agrega aquí más juegos
         ]
     },
@@ -177,6 +178,7 @@ const PRECIOS_ARRIENDO = {
     "Laberinto": 12000,
     "Laberinto doble": 15000,
     "Pesca Milagrosa": 15000,
+    "Taca taca": 20000,
     "Yenga": 12000
 };
 const beneficiosArriendo = [
@@ -194,19 +196,7 @@ catalogo.arriendo.modelos = [
             medidas: (m.medidas || []).filter(([nombre]) => nombre !== "Saco extra"),
             descripcion: `${m.detalle}. Agrégalo a tu arriendo.`,
             beneficios: beneficiosArriendo
-        })),
-    {
-        titulo: "Taca taca",
-        detalle: "Taca taca de madera",
-        descripcion: "Taca taca de madera. Agrégalo a tu arriendo.",
-        valor: 20000,
-        proximamente: true,   // cambia a false cuando subas las fotos a img/juegos/tacataca/
-        precio: "Arriendo",
-        medidas: [],
-        beneficios: beneficiosArriendo,
-        imagen: "img/juegos/tacataca/tacataca1-1.jpg",
-        fotos: "img/juegos/tacataca/tacataca1-"
-    }
+        }))
 ];
 
 const arriendoSel = new Set();
