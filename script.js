@@ -218,6 +218,22 @@ const clientes = [
     // { imagen: "img/clientes/captura1.jpg",  texto: "Comentario de un cliente por WhatsApp" },
 ];
 
+// ======================================================================
+// EVENTOS REALIZADOS — fotos que se muestran bajo "Tu arriendo"
+// (solo en la categoría "Arriendo de juegos"). Guarda las fotos en
+// img/arriendo-eventos/ y agrega una línea por foto.
+// ======================================================================
+
+const fotosEventos = [
+    "img/arriendo-eventos/evento1.jpg",
+    "img/arriendo-eventos/evento2.jpg",
+    "img/arriendo-eventos/evento3.jpg",
+    "img/arriendo-eventos/evento4.jpg",
+    "img/arriendo-eventos/evento5.jpg",
+    "img/arriendo-eventos/evento6.jpg",
+    "img/arriendo-eventos/evento7.jpg"
+];
+
 window.addEventListener("scroll", () => {
     navbar.classList.toggle("scrolled", window.scrollY > 50);
 });
@@ -253,6 +269,8 @@ function cargarCategoria(categoriaId) {
     modelosContainer.querySelector("h2").textContent = esArriendo ? "Juegos disponibles" : "Modelos disponibles";
     modelosContainer.hidden = false;
     detalleProducto.hidden = esArriendo;
+    arrEventos.hidden = !esArriendo;
+    if (!esArriendo) arrEventos.querySelector("video").pause();
     if (esArriendo) {
         cargarArriendo();
         return;
@@ -455,6 +473,19 @@ const pesos = (n) => "$" + n.toLocaleString("es-CL");
 
 // El panel "Tu arriendo" vive justo debajo de la barra de juegos (sin bajar hasta el detalle)
 modelosContainer.appendChild(arrPanel);
+
+// Video y fotos de eventos realizados, debajo de "Tu arriendo"
+const arrEventos = document.querySelector(".arriendo-eventos");
+modelosContainer.appendChild(arrEventos);
+arrEventos.querySelector(".arriendo-eventos-fotos").innerHTML = fotosEventos.map((src, i) => `
+    <button type="button" data-index="${i}" aria-label="Ver foto ${i + 1} del evento">
+        <img src="${src}" alt="Juegos Hermanos Morales en un evento" loading="lazy" decoding="async">
+    </button>`).join("");
+arrEventos.querySelector(".arriendo-eventos-fotos").addEventListener("click", (e) => {
+    const boton = e.target.closest("button");
+    if (!boton) return;
+    abrirLightbox(fotosEventos.map((src) => ({ src, alt: "Juegos Hermanos Morales en un evento" })), Number(boton.dataset.index));
+});
 
 // Arriendo rápido: tocar un juego lo agrega o quita; "Fotos" abre sus fotos
 function cargarArriendo() {
